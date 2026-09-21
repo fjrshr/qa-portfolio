@@ -98,12 +98,12 @@
   .dl-btn:hover{background:var(--accent);color:#fff}
   .dl-btn-big{
     display:inline-flex;align-items:center;gap:8px;
-    padding:14px 28px;font-size:13px;font-weight:700;
-    color:var(--accent);background:var(--card);
-    border:1.5px solid var(--accent);border-radius:10px;
+    padding:10px 24px;font-size:13px;font-weight:700;
+    color:#fff;background:transparent;
+    border:1.5px solid rgba(255,255,255,.4);border-radius:8px;
     text-decoration:none;transition:all .15s;
   }
-  .dl-btn-big:hover{background:var(--accent);color:#fff}
+  .dl-btn-big:hover{background:rgba(255,255,255,.1);border-color:#fff}
 
   /* ── tabs ── */
   nav{display:flex;gap:2px}
@@ -446,14 +446,13 @@
   </div>
 
   <!-- connect -->
-  <div style="text-align:center">
-    <a href="resume.html" class="dl-btn-big">Download Resume</a>
-  </div>
-
   <div class="cta">
     <h3>Let's connect</h3>
     <p>Open to conversations about AI-driven quality engineering, scalable automation, and building systems that help teams ship with confidence.</p>
-    <a href="https://www.linkedin.com/in/fajri-sukma-ashari">Connect on LinkedIn &rarr;</a>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
+      <a href="https://www.linkedin.com/in/fajri-sukma-ashari">Connect on LinkedIn &rarr;</a>
+      <a href="resume.html" class="dl-btn-big">Download Resume</a>
+    </div>
   </div>
 
 </div>
