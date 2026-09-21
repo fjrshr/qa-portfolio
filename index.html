@@ -87,6 +87,15 @@
   }
   .badge i{display:block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  .dl-btn{
+    display:inline-flex;align-items:center;gap:5px;
+    padding:5px 12px;font-size:11px;font-weight:700;
+    color:var(--accent);background:var(--accent-bg);
+    border:1px solid var(--accent);border-radius:20px;
+    text-decoration:none;text-transform:uppercase;letter-spacing:.04em;
+    transition:all .15s;
+  }
+  .dl-btn:hover{background:var(--accent);color:#fff}
 
   /* ── tabs ── */
   nav{display:flex;gap:2px}
@@ -231,7 +240,10 @@
       <h1>Fajri Ashari</h1>
       <span>Senior QA Automation Engineer</span>
     </div>
-    <div class="badge"><i></i> Available</div>
+    <div style="display:flex;align-items:center;gap:10px">
+      <a href="resume.html" class="dl-btn" title="Download Resume (PDF)">Resume</a>
+      <div class="badge"><i></i> Available</div>
+    </div>
   </div>
 
   <!-- tabs -->
