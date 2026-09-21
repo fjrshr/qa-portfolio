@@ -1,356 +1,463 @@
 <title>Fajri Ashari — Portfolio</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@500;600&display=swap');
 
   :root {
-    --bg:       #fcfbf9;
-    --surface:  #ffffff;
-    --ink:      #1a1a1a;
-    --ink-alt:  #63635f;
-    --ink-subtle: #a09e98;
-    --accent:   #1a6b6b;
-    --accent-soft: #eef5f5;
-    --accent-dim: #d9eaea;
-    --metric:   #1e7a50;
-    --metric-soft: #edf7f1;
-    --border:   #eae8e4;
-    --hairline: #f2f0ec;
-    --shadow: 0 2px 16px rgba(0,0,0,.06);
+    --bg:       #f5f5f3;
+    --panel:    #ffffff;
+    --ink:      #121316;
+    --ink-alt:  #5f6066;
+    --ink-dim:  #90929a;
+    --accent:   #1a7a7a;
+    --accent-lit: #239e9e;
+    --accent-pale: #e3f2f2;
+    --good:     #1d8c53;
+    --good-pale:#e6f5ed;
+    --warn:     #b87a14;
+    --warn-pale:#fef5e6;
+    --border:   #e4e4e0;
+    --hairline: #efefec;
+    --shadow:  0 1px 4px rgba(0,0,0,.04), 0 2px 12px rgba(0,0,0,.04);
+    --radius:  14px;
+    --radius-sm: 10px;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg:       #0e0f0c;
-      --surface:  #181916;
-      --ink:      #ededeb;
-      --ink-alt:  #a09e98;
-      --ink-subtle: #706e68;
-      --accent:   #3dd4c4;
-      --accent-soft: #0f2422;
-      --accent-dim: #142a28;
-      --metric:   #4ade80;
-      --metric-soft: #0f2418;
-      --border:   #2a2822;
-      --hairline: #1e1c18;
-      --shadow: 0 2px 16px rgba(0,0,0,.4);
+      --bg:       #0c0d0e;
+      --panel:    #18191c;
+      --ink:      #edeeef;
+      --ink-alt:  #a0a2a8;
+      --ink-dim:  #686a70;
+      --accent:   #2dd4bf;
+      --accent-lit: #5eead6;
+      --accent-pale: #0d2826;
+      --good:     #34d399;
+      --good-pale:#0b2e1d;
+      --warn:     #f59e0b;
+      --warn-pale:#2d1f0a;
+      --border:   #292a2d;
+      --hairline: #1e1f22;
+      --shadow:  0 1px 4px rgba(0,0,0,.2), 0 2px 12px rgba(0,0,0,.2);
     }
   }
   :root[data-theme="dark"] {
-    --bg:       #0e0f0c;
-    --surface:  #181916;
-    --ink:      #ededeb;
-    --ink-alt:  #a09e98;
-    --ink-subtle: #706e68;
-    --accent:   #3dd4c4;
-    --accent-soft: #0f2422;
-    --accent-dim: #142a28;
-    --metric:   #4ade80;
-    --metric-soft: #0f2418;
-    --border:   #2a2822;
-    --hairline: #1e1c18;
-    --shadow: 0 2px 16px rgba(0,0,0,.4);
+    --bg:       #0c0d0e;
+    --panel:    #18191c;
+    --ink:      #edeeef;
+    --ink-alt:  #a0a2a8;
+    --ink-dim:  #686a70;
+    --accent:   #2dd4bf;
+    --accent-lit: #5eead6;
+    --accent-pale: #0d2826;
+    --good:     #34d399;
+    --good-pale:#0b2e1d;
+    --warn:     #f59e0b;
+    --warn-pale:#2d1f0a;
+    --border:   #292a2d;
+    --hairline: #1e1f22;
+    --shadow:  0 1px 4px rgba(0,0,0,.2), 0 2px 12px rgba(0,0,0,.2);
   }
-
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:'Inter',system-ui,-apple-system,sans-serif;
-    font-size:16px;line-height:1.65;color:var(--ink);
-    background:var(--bg);
-    -webkit-font-smoothing:antialiased;
-    padding-inline:clamp(20px,6vw,56px);
-    padding-block:64px 100px;
+    font-size:14px;line-height:1.55;color:var(--ink);
+    background:var(--bg);-webkit-font-smoothing:antialiased;
+    padding:clamp(16px,4vw,36px);
   }
-  .page{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:72px}
-  section{display:flex;flex-direction:column;gap:16px}
-  p{color:var(--ink-alt);text-wrap:pretty}
-  hr{border:none;height:1px;background:var(--hairline);margin:0}
+  .mono{font-family:'JetBrains Mono',monospace}
 
-  /* ── type ── */
-  h1{
-    font-family:'Playfair Display',Georgia,serif;
-    font-size:clamp(40px,8vw,64px);font-weight:700;
-    line-height:1.1;letter-spacing:-0.01em;
-    color:var(--ink);
-  }
-  h2{
-    font-family:'Playfair Display',Georgia,serif;
-    font-size:26px;font-weight:600;letter-spacing:-0.01em;
-    margin-bottom:4px;
-  }
-  h3{
-    font-size:26px;font-weight:700;letter-spacing:-0.01em;
-  }
-  .eyebrow{
-    font-size:12px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.1em;color:var(--accent);
-  }
+  /* ── layout ── */
+  .app{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
 
-  /* ── hero ── */
-  .hero{gap:24px;padding-top:40px}
-  .hero h1{margin-bottom:4px}
-  .hero .availability{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:13px;font-weight:600;color:var(--accent);
-    margin-bottom:8px;
+  /* ── header ── */
+  .header{
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:12px;
   }
-  .hero .availability .dot{
-    width:7px;height:7px;border-radius:50%;background:var(--accent);
-    animation:pulse 2s ease-in-out infinite;
+  .header-left{display:flex;flex-direction:column;gap:4px}
+  .header-name{font-size:22px;font-weight:800;letter-spacing:-.01em}
+  .header-role{font-size:12px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.06em}
+  .header-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:5px 12px;font-size:11px;font-weight:700;
+    color:var(--good);background:var(--good-pale);
+    border-radius:100px;text-transform:uppercase;letter-spacing:.04em;
   }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-  .hero-intro{
-    font-size:18px;color:var(--ink-alt);line-height:1.6;max-width:600px;
-  }
-  .hero-intro strong{color:var(--ink);font-weight:600}
+  .header-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--good);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  /* ── project card ── */
-  .project{
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
-  }
-  .project-body{padding:32px;display:flex;flex-direction:column;gap:20px}
-  .project-body p{font-size:15px}
-  .project-metrics{
-    display:flex;flex-wrap:wrap;gap:28px;
-    padding:0;margin-top:4px;
-  }
-  .project-metric{display:flex;flex-direction:column;gap:2px}
-  .project-metric .num{
-    font-size:28px;font-weight:800;letter-spacing:-.02em;
-    color:var(--accent);font-variant-numeric:tabular-nums;
-  }
-  .project-metric .lbl{font-size:12px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.04em}
-
-  .project-highlights{
-    display:flex;flex-direction:column;gap:0;
-    border-top:1px solid var(--hairline);padding-top:20px;margin-top:4px;
-  }
-  .highlight{
-    display:flex;gap:14px;align-items:flex-start;padding-block:11px;
-  }
-  .highlight+.highlight{border-top:1px solid var(--hairline)}
-  .highlight .hl-num{
-    font-family:'Inter',sans-serif;font-size:13px;font-weight:800;
-    color:var(--accent);min-width:24px;text-align:right;padding-top:2px;
-  }
-  .highlight .hl-text{font-size:14px;color:var(--ink);line-height:1.55}
-  .highlight .hl-sub{font-size:13px;color:var(--ink-alt);display:block;margin-top:1px}
-
-  /* ── skills flow ── */
-  .skill-flow{display:flex;flex-wrap:wrap;gap:10px}
-  .chip{
-    padding:8px 16px;font-size:13px;font-weight:600;
-    color:var(--ink);background:var(--surface);
-    border:1px solid var(--border);border-radius:100px;
+  /* ── tabs ── */
+  .tabs{display:flex;gap:4px;flex-wrap:wrap}
+  .tab{
+    padding:8px 18px;font-size:13px;font-weight:600;
+    color:var(--ink-alt);background:transparent;
+    border:none;border-radius:8px;cursor:pointer;
     transition:all .15s;
   }
-  .chip:hover{background:var(--accent-soft);border-color:var(--accent)}
-  .chip.pri{background:var(--accent-soft);border-color:var(--accent-dim);color:var(--accent)}
+  .tab:hover{background:var(--hairline);color:var(--ink)}
+  .tab.active{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+
+  /* ── panels ── */
+  .panels{position:relative}
+  .panel-content{
+    display:none;flex-direction:column;gap:20px;
+    background:var(--panel);border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow);
+    animation:fadeIn .25s ease;
+  }
+  .panel-content.active{display:flex}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+
+  /* ── stat row ── */
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:600px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
+  .kpi{
+    background:var(--bg);border-radius:var(--radius-sm);
+    padding:18px;display:flex;flex-direction:column;gap:6px;
+    border:1px solid var(--hairline);transition:border-color .15s;
+  }
+  .kpi:hover{border-color:var(--accent)}
+  .kpi .num{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+  .kpi .num.accent{color:var(--accent)}
+  .kpi .num.good{color:var(--good)}
+  .kpi .lbl{font-size:11px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.04em;line-height:1.4}
+  .kpi .delta{margin-top:2px;font-size:11px;font-weight:700;color:var(--good)}
+
+  /* ── chart row ── */
+  .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:600px){.chart-row{grid-template-columns:1fr}}
+  .chart-box{
+    background:var(--bg);border:1px solid var(--hairline);
+    border-radius:var(--radius-sm);padding:20px;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .chart-title{font-size:11px;font-weight:700;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.05em}
+
+  /* ── bars ── */
+  .bar-list{display:flex;flex-direction:column;gap:8px}
+  .bar-item{display:flex;align-items:center;gap:10px}
+  .bar-label{font-size:12px;font-weight:600;color:var(--ink);min-width:60px;text-align:right}
+  .bar-track{flex:1;height:8px;background:var(--hairline);border-radius:4px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
+  .bar-fill.teal{background:var(--accent)}
+  .bar-fill.green{background:var(--good)}
+
+  /* ── project card ── */
+  .pc{
+    background:var(--bg);border:1px solid var(--hairline);
+    border-radius:var(--radius-sm);overflow:hidden;
+  }
+  .pc-header{
+    padding:20px;display:flex;align-items:center;justify-content:space-between;
+    cursor:pointer;user-select:none;gap:12px;
+  }
+  .pc-header:hover{background:var(--hairline)}
+  .pc-title{font-size:15px;font-weight:700}
+  .pc-title .tag{
+    display:inline-block;margin-left:8px;padding:2px 8px;
+    font-size:10px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.05em;color:var(--accent);background:var(--accent-pale);
+    border-radius:4px;vertical-align:middle;
+  }
+  .pc-chevron{font-size:18px;color:var(--ink-dim);transition:transform .25s}
+  .pc.open .pc-chevron{transform:rotate(180deg)}
+  .pc-body{display:none;padding:0 20px 20px;flex-direction:column;gap:14px}
+  .pc.open .pc-body{display:flex}
+  .pc-body p{font-size:13px;color:var(--ink-alt);line-height:1.6}
+  .pc-metrics{display:flex;flex-wrap:wrap;gap:20px}
+  .pc-metric .v{font-size:20px;font-weight:800;color:var(--accent)}
+  .pc-metric .l{font-size:11px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.05em}
+
+  /* ── skills ── */
+  .skill-section{display:flex;flex-direction:column;gap:16px}
+  .skill-cat{display:flex;flex-direction:column;gap:4px}
+  .skill-cat-label{font-size:10px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .skill-chips{display:flex;flex-wrap:wrap;gap:6px}
+  .sc{
+    padding:6px 12px;font-size:12px;font-weight:600;
+    color:var(--ink);background:var(--bg);border:1px solid var(--hairline);
+    border-radius:6px;cursor:default;transition:all .15s;
+  }
+  .sc:hover{background:var(--accent-pale);border-color:var(--accent)}
+  .sc.hi{background:var(--accent-pale);border-color:var(--accent);color:var(--accent)}
 
   /* ── timeline ── */
-  .journey{display:flex;flex-direction:column;gap:0}
-  .stop{display:flex;gap:20px;padding-block:18px 20px}
-  .stop+.stop{border-top:1px solid var(--hairline)}
-  .stop-year{
-    font-size:13px;font-weight:800;color:var(--accent);
-    min-width:56px;letter-spacing:.03em;padding-top:1px;
+  .tl{display:flex;flex-direction:column;position:relative;padding-left:24px}
+  .tl::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--hairline);border-radius:1px}
+  .tl-item{display:flex;flex-direction:column;gap:2px;padding-block:12px 16px;position:relative}
+  .tl-item::before{
+    content:'';position:absolute;left:-21px;top:16px;
+    width:10px;height:10px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-pale);
   }
-  .stop-body{display:flex;flex-direction:column;gap:3px}
-  .stop-role{font-size:16px;font-weight:700;color:var(--ink)}
-  .stop-where{font-size:14px;color:var(--ink-alt)}
-  .stop-note{font-size:13px;color:var(--ink-subtle);font-style:italic}
+  .tl-role{font-size:14px;font-weight:700}
+  .tl-where{font-size:12px;color:var(--ink-alt)}
+  .tl-note{font-size:12px;color:var(--ink-dim);font-style:italic}
+  .tl-year{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
 
-  /* ── footer ── */
-  .cta{
-    background:var(--ink);color:#fff;border-radius:16px;
-    padding:44px 36px;text-align:center;
-    display:flex;flex-direction:column;align-items:center;gap:16px;
+  /* ── connect ── */
+  .connect-panel{
+    background:var(--ink);border-radius:var(--radius);
+    padding:32px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:12px;
   }
-  .cta h2{color:#fff;margin-bottom:0}
-  .cta p{color:rgba(255,255,255,.5);max-width:460px;font-size:15px}
-  .cta-btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:14px 28px;font-size:14px;font-weight:700;
-    color:var(--ink);background:#fff;border:none;
-    border-radius:10px;cursor:pointer;text-decoration:none;
-    transition:opacity .15s;
+  .connect-panel h3{color:#fff;font-size:18px}
+  .connect-panel p{color:rgba(255,255,255,.5);font-size:13px;max-width:400px}
+  .connect-panel a{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:10px 22px;font-size:13px;font-weight:700;
+    color:var(--ink);background:#fff;border-radius:8px;
+    text-decoration:none;transition:opacity .15s;
   }
-  .cta-btn:hover{opacity:.85}
-
-  @media(max-width:480px){
-    .project-body{padding:24px}
-    .project-metrics{gap:20px}
-    .project-metric .num{font-size:24px}
-    .cta{padding:32px 24px}
-  }
+  .connect-panel a:hover{opacity:.85}
 </style>
 
-<div class="page">
+<div class="app">
+  <!-- ── header ── -->
+  <div class="header">
+    <div class="header-left">
+      <span class="header-name">Fajri Ashari</span>
+      <span class="header-role">Senior QA Automation Engineer</span>
+    </div>
+    <div class="header-badge"><span class="dot"></span> Available</div>
+  </div>
 
-  <!-- ═══ HERO ═══ -->
-  <section class="hero">
-    <div class="availability"><span class="dot"></span> Available for new opportunities</div>
-    <h1>Fajri Ashari</h1>
-    <p class="hero-intro">
-      Senior QA Engineer who <strong>designs automation that scales across 31+ applications</strong> — not scripts for one app. I build the architecture, tooling, and AI workflows that make quality consistent at every touchpoint.
-    </p>
-  </section>
+  <!-- ── tabs ── -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="overview">Overview</button>
+    <button class="tab" data-tab="projects">Projects</button>
+    <button class="tab" data-tab="skills">Skills</button>
+    <button class="tab" data-tab="journey">Journey</button>
+  </nav>
 
-  <!-- ═══ PROJECT ═══ -->
-  <section>
-    <span class="eyebrow">Featured project</span>
-    <div class="project">
-      <div class="project-body">
-        <h2>Agentic AI Testing at Scale</h2>
-        <p>
-          I led the adoption of Agentic AI across the full testing lifecycle for a major telecom's digital platform — from requirement analysis and test generation to self-healing and defect traceability. Built the harnesses, tooling, and MCP integrations that made AI-assisted testing reliable at production scale.
-        </p>
+  <div class="panels">
+    <!-- ═══ OVERVIEW ═══ -->
+    <div class="panel-content active" id="overview">
+      <p style="font-size:15px;line-height:1.65;color:var(--ink-alt)">
+        I design and govern test automation that scales across <strong style="color:var(--ink)">31+ applications</strong> — not scripts for one app. Building the architecture, tooling, and AI workflows that keep quality consistent at every customer touchpoint.
+      </p>
 
-        <div class="project-metrics">
-          <div class="project-metric">
-            <span class="num">85%</span>
-            <span class="lbl">Coverage</span>
+      <div class="kpi-row">
+        <div class="kpi"><span class="num accent">31+</span><span class="lbl">Apps governed</span></div>
+        <div class="kpi"><span class="num good">85%</span><span class="lbl">Coverage</span></div>
+        <div class="kpi"><span class="num accent">4×</span><span class="lbl">Faster creation</span><span class="delta">20 min → 5 min</span></div>
+        <div class="kpi"><span class="num good">3.5×</span><span class="lbl">Throughput</span><span class="delta">7 → 25 / night</span></div>
+      </div>
+
+      <div class="chart-row">
+        <div class="chart-box">
+          <span class="chart-title">Before / After Agentic AI</span>
+          <div class="bar-list">
+            <div class="bar-item">
+              <span class="bar-label mono" style="font-size:11px">Test creation</span>
+              <div class="bar-track">
+                <div class="bar-fill teal" style="width:100%" title="5 min"></div>
+              </div>
+              <span class="mono" style="font-size:11px;color:var(--accent);min-width:36px">5m</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-label mono" style="font-size:11px;color:var(--ink-dim)">Before</span>
+              <div class="bar-track">
+                <div class="bar-fill teal" style="width:25%;opacity:.35" title="20 min"></div>
+              </div>
+              <span class="mono" style="font-size:11px;color:var(--ink-dim);min-width:36px">20m</span>
+            </div>
           </div>
-          <div class="project-metric">
-            <span class="num">4×</span>
-            <span class="lbl">Faster creation</span>
-          </div>
-          <div class="project-metric">
-            <span class="num">3.5×</span>
-            <span class="lbl">Throughput</span>
-          </div>
-          <div class="project-metric">
-            <span class="num">31+</span>
-            <span class="lbl">Apps governed</span>
+          <div class="bar-list" style="margin-top:12px">
+            <div class="bar-item">
+              <span class="bar-label mono" style="font-size:11px">Throughput</span>
+              <div class="bar-track">
+                <div class="bar-fill green" style="width:100%" title="25 TC/night"></div>
+              </div>
+              <span class="mono" style="font-size:11px;color:var(--good);min-width:36px">25</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-label mono" style="font-size:11px;color:var(--ink-dim)">Before</span>
+              <div class="bar-track">
+                <div class="bar-fill green" style="width:28%;opacity:.35" title="7 TC/night"></div>
+              </div>
+              <span class="mono" style="font-size:11px;color:var(--ink-dim);min-width:36px">7</span>
+            </div>
           </div>
         </div>
 
-        <div class="project-highlights">
-          <div class="highlight">
-            <span class="hl-num">01</span>
-            <div>
-              <span class="hl-text">Automated 66 of 75 critical use cases with AI-assisted test generation</span>
-              <span class="hl-sub">20 min → 5 min per use case</span>
+        <div class="chart-box">
+          <span class="chart-title">Coverage Progress</span>
+          <div class="bar-list" style="margin-top:4px">
+            <div class="bar-item">
+              <span class="bar-label mono" style="font-size:11px">Use cases</span>
+              <div class="bar-track">
+                <div class="bar-fill green" style="width:88%" title="66/75"></div>
+              </div>
+              <span class="mono" style="font-size:11px;color:var(--good);min-width:44px">66/75</span>
+            </div>
+            <div class="bar-item">
+              <span class="bar-label mono" style="font-size:11px">Coverage</span>
+              <div class="bar-track">
+                <div class="bar-fill green" style="width:85%" title="85%"></div>
+              </div>
+              <span class="mono" style="font-size:11px;color:var(--good);min-width:44px">85%</span>
             </div>
           </div>
-          <div class="highlight">
-            <span class="hl-num">02</span>
-            <div>
-              <span class="hl-text">Increased tester throughput from 7 to 25 test cases per night</span>
-              <span class="hl-sub">Coverage across mobile &amp; web digital applications</span>
-            </div>
+          <p style="font-size:11px;color:var(--ink-dim);margin-top:8px">
+            66 of 75 critical use cases automated across digital applications
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ PROJECTS ═══ -->
+    <div class="panel-content" id="projects">
+      <p style="font-size:13px;color:var(--ink-alt);margin-bottom:4px">Click to expand details</p>
+
+      <div class="pc open">
+        <div class="pc-header"><span class="pc-title">Agentic AI Testing at Scale <span class="tag">Featured</span></span><span class="pc-chevron">▾</span></div>
+        <div class="pc-body">
+          <p>Led the adoption of Agentic AI across the full testing lifecycle for a major telecom's digital platform — from requirement analysis and test generation to self-healing and defect traceability. Built the harnesses, tooling, and MCP integrations that made AI-assisted testing reliable at production scale.</p>
+          <div class="pc-metrics">
+            <div class="pc-metric"><span class="v">66/75</span><span class="l">Use Cases Automated</span></div>
+            <div class="pc-metric"><span class="v">>85%</span><span class="l">Coverage</span></div>
+            <div class="pc-metric"><span class="v">4×</span><span class="l">Faster Creation</span></div>
+            <div class="pc-metric"><span class="v">3.5×</span><span class="l">Throughput</span></div>
+            <div class="pc-metric"><span class="v">31+</span><span class="l">Apps Onboarded</span></div>
           </div>
-          <div class="highlight">
-            <span class="hl-num">03</span>
-            <div>
-              <span class="hl-text">Built custom MCP harness integrating Playwright and mobile-mcp</span>
-              <span class="hl-sub">Live-device locator verification inside AI workflows</span>
-            </div>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pc-header"><span class="pc-title">Automation Architecture & Governance</span><span class="pc-chevron">▾</span></div>
+        <div class="pc-body">
+          <p>Designed the central automation architecture that standardizes testing across 31+ mobile and web applications. Defined framework conventions, reusable keyword libraries, test listeners, and naming standards — all distributed via a Hub &amp; Spoke submodule mechanism. Built adoption tooling: one script onboards any app.</p>
+        </div>
+      </div>
+
+      <div class="pc">
+        <div class="pc-header"><span class="pc-title">MCP Harness — AI + Live Devices</span><span class="pc-chevron">▾</span></div>
+        <div class="pc-body">
+          <p>Built custom MCP (Model Context Protocol) harness integrating Playwright for web and mobile-mcp for live-device verification. This lets AI-assisted testing workflows validate locators, explore screens, and verify behavior on real devices — not just simulated environments.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ SKILLS ═══ -->
+    <div class="panel-content" id="skills">
+      <div class="skill-section">
+        <div class="skill-cat">
+          <span class="skill-cat-label">Core Automation</span>
+          <div class="skill-chips">
+            <span class="sc hi">Katalon Studio</span>
+            <span class="sc">Appium</span>
+            <span class="sc">Playwright</span>
+            <span class="sc">Selenium WebDriver</span>
+            <span class="sc">API Testing</span>
+            <span class="sc">Mobile Testing</span>
+            <span class="sc">Web Testing</span>
           </div>
-          <div class="highlight">
-            <span class="hl-num">04</span>
-            <div>
-              <span class="hl-text">Designed adoption tooling — one script onboards any app</span>
-              <span class="hl-sub">Seamless scaling across 31+ mobile &amp; web applications</span>
-            </div>
+        </div>
+        <div class="skill-cat">
+          <span class="skill-cat-label">AI & Modern Testing</span>
+          <div class="skill-chips">
+            <span class="sc hi">Agentic AI Testing</span>
+            <span class="sc">MCP (Model Context Protocol)</span>
+            <span class="sc">Prompt Engineering</span>
+            <span class="sc">Self-Healing Automation</span>
+            <span class="sc">AI-Assisted Test Gen</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <span class="skill-cat-label">Engineering</span>
+          <div class="skill-chips">
+            <span class="sc">Java</span>
+            <span class="sc">Groovy</span>
+            <span class="sc">Python</span>
+            <span class="sc">TypeScript</span>
+            <span class="sc">React</span>
+            <span class="sc">Shell Scripting</span>
+          </div>
+        </div>
+        <div class="skill-cat">
+          <span class="skill-cat-label">Infrastructure</span>
+          <div class="skill-chips">
+            <span class="sc">CI/CD Pipelines</span>
+            <span class="sc">Docker</span>
+            <span class="sc">Git / Submodules</span>
+            <span class="sc">Framework Architecture</span>
+            <span class="sc">QA Governance</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- ═══ ABOUT ═══ -->
-  <section>
-    <span class="eyebrow">About</span>
-    <p>
-      I started as a software developer in 2018. A year later I moved into QA, and by 2021 I was fully focused on automation engineering. That blend of dev-thinking and QA-discipline is what lets me build automation that teams actually trust and maintain — at a scale most QA never get to touch.
-    </p>
-    <p>
-      What drives me: taking a fragmented testing landscape and turning it into one cohesive quality program. When I'm not designing frameworks, I'm probably deep in a Katalon project, writing tooling scripts, or experimenting with how AI can make testing smarter.
-    </p>
-  </section>
-
-  <hr>
-
-  <!-- ═══ SKILLS ═══ -->
-  <section>
-    <span class="eyebrow">What I work with</span>
-    <div class="skill-flow">
-      <span class="chip pri">Katalon Studio</span>
-      <span class="chip pri">Agentic AI Testing</span>
-      <span class="chip pri">Framework Architecture</span>
-      <span class="chip">MCP / Playwright</span>
-      <span class="chip">Appium</span>
-      <span class="chip">Selenium WebDriver</span>
-      <span class="chip">API Testing</span>
-      <span class="chip">CI/CD</span>
-      <span class="chip">Java / Groovy</span>
-      <span class="chip">Python</span>
-      <span class="chip">React / TypeScript</span>
-      <span class="chip">Docker</span>
-      <span class="chip">Git / Submodules</span>
-      <span class="chip">Mobile Testing</span>
-      <span class="chip">Web Testing</span>
-    </div>
-  </section>
-
-  <hr>
-
-  <!-- ═══ JOURNEY ═══ -->
-  <section>
-    <span class="eyebrow">Journey</span>
-    <div class="journey">
-      <div class="stop">
-        <span class="stop-year">Now</span>
-        <div class="stop-body">
-          <span class="stop-role">Senior QA Automation Engineer</span>
-          <span class="stop-where">Digital Platform — Leading telecom operator</span>
-          <span class="stop-note">Designing automation architecture, governing 31+ apps, driving Agentic AI adoption</span>
+    <!-- ═══ JOURNEY ═══ -->
+    <div class="panel-content" id="journey">
+      <div class="tl">
+        <div class="tl-item">
+          <span class="tl-year">Now</span>
+          <span class="tl-role">Senior QA Automation Engineer</span>
+          <span class="tl-where">Digital Platform — Leading telecom operator</span>
+          <span class="tl-note">Architecting automation for 31+ apps. Driving Agentic AI adoption. Building tooling, harnesses, governance.</span>
         </div>
-      </div>
-      <div class="stop">
-        <span class="stop-year">2021</span>
-        <div class="stop-body">
-          <span class="stop-role">Automation Engineer</span>
-          <span class="stop-where">Leading telecom operator</span>
-          <span class="stop-note">Built first automation frameworks from scratch. Katalon, CI/CD integration.</span>
+        <div class="tl-item">
+          <span class="tl-year">2021</span>
+          <span class="tl-role">Automation Engineer</span>
+          <span class="tl-where">Leading telecom operator</span>
+          <span class="tl-note">Built first frameworks from scratch. Katalon. CI/CD integration. The foundation.</span>
         </div>
-      </div>
-      <div class="stop">
-        <span class="stop-year">2019</span>
-        <div class="stop-body">
-          <span class="stop-role">Quality Assurance Engineer</span>
-          <span class="stop-where">Leading telecom operator</span>
-          <span class="stop-note">Manual → automation transition. Built testing discipline across teams.</span>
+        <div class="tl-item">
+          <span class="tl-year">2019</span>
+          <span class="tl-role">Quality Assurance Engineer</span>
+          <span class="tl-where">Leading telecom operator</span>
+          <span class="tl-note">Manual → automation transition. Built testing discipline, process, standards.</span>
         </div>
-      </div>
-      <div class="stop">
-        <span class="stop-year">2018</span>
-        <div class="stop-body">
-          <span class="stop-role">Software Developer</span>
-          <span class="stop-where">Leading telecom operator</span>
-          <span class="stop-note">Started here. The dev foundation behind every framework I design today.</span>
+        <div class="tl-item">
+          <span class="tl-year">2018</span>
+          <span class="tl-role">Software Developer</span>
+          <span class="tl-where">Leading telecom operator</span>
+          <span class="tl-note">Where it started. The dev foundation behind every framework I design today.</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <hr>
-
-  <!-- ═══ CERTIFICATIONS ═══ -->
-  <section>
-    <span class="eyebrow">Certifications</span>
-    <div class="skill-flow">
-      <span class="chip pri">Katalon Certified Professional</span>
-      <span class="chip pri">Katalon Agentic AI Workshop Graduate</span>
-    </div>
-  </section>
-
-  <!-- ═══ CONNECT ═══ -->
-  <section class="cta">
-    <h2>Let's talk</h2>
-    <p>I'm always open to conversations about AI-driven quality engineering, scalable test automation, and building systems that help teams ship with confidence.</p>
-    <a href="https://www.linkedin.com/in/fajri-sukma-ashari" class="cta-btn">Connect on LinkedIn →</a>
-  </section>
-
+  <!-- ── connect ── -->
+  <div class="connect-panel">
+    <h3>Let's connect</h3>
+    <p>Open to conversations about AI-driven quality engineering, scalable automation, and building systems that help teams ship with confidence.</p>
+    <a href="https://www.linkedin.com/in/fajri-sukma-ashari">Connect on LinkedIn →</a>
+  </div>
 </div>
+
+<script>
+  // ── tabs ──
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel-content');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      const id = t.dataset.tab;
+      tabs.forEach(b => b.classList.remove('active'));
+      t.classList.add('active');
+      panels.forEach(p => p.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    });
+  });
+
+  // ── expandable project cards ──
+  document.querySelectorAll('.pc-header').forEach(h => {
+    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  });
+
+  // ── persist active tab in URL hash ──
+  const hash = window.location.hash.replace('#','');
+  if (hash && document.getElementById(hash)) {
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    const target = document.querySelector(`[data-tab="${hash}"]`);
+    if (target) { target.classList.add('active'); document.getElementById(hash).classList.add('active'); }
+  }
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      history.replaceState(null, '', '#' + t.dataset.tab);
+    });
+  });
+</script>
