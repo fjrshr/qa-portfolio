@@ -2,462 +2,463 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@500;600&display=swap');
 
+  /* ── design tokens ── */
   :root {
-    --bg:       #f5f5f3;
-    --panel:    #ffffff;
-    --ink:      #121316;
-    --ink-alt:  #5f6066;
-    --ink-dim:  #90929a;
-    --accent:   #1a7a7a;
-    --accent-lit: #239e9e;
-    --accent-pale: #e3f2f2;
-    --good:     #1d8c53;
-    --good-pale:#e6f5ed;
-    --warn:     #b87a14;
-    --warn-pale:#fef5e6;
-    --border:   #e4e4e0;
-    --hairline: #efefec;
-    --shadow:  0 1px 4px rgba(0,0,0,.04), 0 2px 12px rgba(0,0,0,.04);
-    --radius:  14px;
-    --radius-sm: 10px;
+    --bg:       #f6f6f4;
+    --card:     #ffffff;
+    --ink:      #131316;
+    --sub:      #646468;
+    --dim:      #98989c;
+    --accent:   #0f7a6b;
+    --accent-hi:#10b095;
+    --accent-bg:#ebf7f5;
+    --green:    #1a7e4c;
+    --green-bg: #ecf6f0;
+    --amber:    #b87a14;
+    --amber-bg: #fdf5e6;
+    --border:   #e6e6e2;
+    --divider:  #f0f0ec;
+    --shadow:  0 1px 3px rgba(0,0,0,.04);
+    --radius:  12px;
+    --gap:     16px;
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg:       #0c0d0e;
-      --panel:    #18191c;
-      --ink:      #edeeef;
-      --ink-alt:  #a0a2a8;
-      --ink-dim:  #686a70;
+      --bg:       #0d0e10;
+      --card:     #1a1b1e;
+      --ink:      #eeeef0;
+      --sub:      #a0a0a6;
+      --dim:      #686870;
       --accent:   #2dd4bf;
-      --accent-lit: #5eead6;
-      --accent-pale: #0d2826;
-      --good:     #34d399;
-      --good-pale:#0b2e1d;
-      --warn:     #f59e0b;
-      --warn-pale:#2d1f0a;
-      --border:   #292a2d;
-      --hairline: #1e1f22;
-      --shadow:  0 1px 4px rgba(0,0,0,.2), 0 2px 12px rgba(0,0,0,.2);
+      --accent-hi:#5ee8d6;
+      --accent-bg:#0d2422;
+      --green:    #34d399;
+      --green-bg: #0b281b;
+      --amber:    #f59e0b;
+      --amber-bg: #281e0b;
+      --border:   #2a2a2e;
+      --divider:  #1e1e22;
+      --shadow:  0 1px 3px rgba(0,0,0,.2);
     }
   }
   :root[data-theme="dark"] {
-    --bg:       #0c0d0e;
-    --panel:    #18191c;
-    --ink:      #edeeef;
-    --ink-alt:  #a0a2a8;
-    --ink-dim:  #686a70;
+    --bg:       #0d0e10;
+    --card:     #1a1b1e;
+    --ink:      #eeeef0;
+    --sub:      #a0a0a6;
+    --dim:      #686870;
     --accent:   #2dd4bf;
-    --accent-lit: #5eead6;
-    --accent-pale: #0d2826;
-    --good:     #34d399;
-    --good-pale:#0b2e1d;
-    --warn:     #f59e0b;
-    --warn-pale:#2d1f0a;
-    --border:   #292a2d;
-    --hairline: #1e1f22;
-    --shadow:  0 1px 4px rgba(0,0,0,.2), 0 2px 12px rgba(0,0,0,.2);
+    --accent-hi:#5ee8d6;
+    --accent-bg:#0d2422;
+    --green:    #34d399;
+    --green-bg: #0b281b;
+    --amber:    #f59e0b;
+    --amber-bg: #281e0b;
+    --border:   #2a2a2e;
+    --divider:  #1e1e22;
+    --shadow:  0 1px 3px rgba(0,0,0,.2);
   }
+
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:'Inter',system-ui,-apple-system,sans-serif;
-    font-size:14px;line-height:1.55;color:var(--ink);
-    background:var(--bg);-webkit-font-smoothing:antialiased;
-    padding:clamp(16px,4vw,36px);
+    font-size:14px;line-height:1.6;color:var(--ink);
+    background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    padding:20px;
   }
-  .mono{font-family:'JetBrains Mono',monospace}
+  .app{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+  .mono{font-family:'JetBrains Mono',monospace;font-size:12px}
 
-  /* ── layout ── */
-  .app{max-width:800px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
-
-  /* ── header ── */
-  .header{
+  /* ── header bar ── */
+  .topbar{
     display:flex;align-items:center;justify-content:space-between;
-    flex-wrap:wrap;gap:12px;
+    gap:12px;flex-wrap:wrap;
   }
-  .header-left{display:flex;flex-direction:column;gap:4px}
-  .header-name{font-size:22px;font-weight:800;letter-spacing:-.01em}
-  .header-role{font-size:12px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.06em}
-  .header-badge{
+  .topbar-left h1{font-size:20px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+  .topbar-left span{font-size:12px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:.06em}
+  .badge{
     display:inline-flex;align-items:center;gap:6px;
-    padding:5px 12px;font-size:11px;font-weight:700;
-    color:var(--good);background:var(--good-pale);
-    border-radius:100px;text-transform:uppercase;letter-spacing:.04em;
+    padding:5px 11px;font-size:11px;font-weight:700;
+    color:var(--green);background:var(--green-bg);
+    border-radius:20px;text-transform:uppercase;letter-spacing:.04em;
   }
-  .header-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--good);animation:pulse 2s infinite}
+  .badge i{display:block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
   /* ── tabs ── */
-  .tabs{display:flex;gap:4px;flex-wrap:wrap}
-  .tab{
-    padding:8px 18px;font-size:13px;font-weight:600;
-    color:var(--ink-alt);background:transparent;
-    border:none;border-radius:8px;cursor:pointer;
-    transition:all .15s;
+  nav{display:flex;gap:2px}
+  nav button{
+    flex:1;padding:10px 0;font-size:13px;font-weight:600;
+    color:var(--sub);background:none;border:none;
+    border-bottom:2px solid transparent;cursor:pointer;
+    transition:all .15s;text-align:center;
   }
-  .tab:hover{background:var(--hairline);color:var(--ink)}
-  .tab.active{background:var(--panel);color:var(--ink);box-shadow:var(--shadow)}
+  nav button:hover{color:var(--ink)}
+  nav button.on{color:var(--accent);border-bottom-color:var(--accent)}
 
-  /* ── panels ── */
-  .panels{position:relative}
-  .panel-content{
-    display:none;flex-direction:column;gap:20px;
-    background:var(--panel);border-radius:var(--radius);
+  /* ── panel ── */
+  .panel{
+    display:none;flex-direction:column;gap:var(--gap);
+    background:var(--card);border-radius:var(--radius);
     padding:28px;box-shadow:var(--shadow);
-    animation:fadeIn .25s ease;
+    animation:in .2s ease;
   }
-  .panel-content.active{display:flex}
-  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .panel.show{display:flex}
+  @keyframes in{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 
-  /* ── stat row ── */
-  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-  @media(max-width:600px){.kpi-row{grid-template-columns:repeat(2,1fr)}}
-  .kpi{
-    background:var(--bg);border-radius:var(--radius-sm);
-    padding:18px;display:flex;flex-direction:column;gap:6px;
-    border:1px solid var(--hairline);transition:border-color .15s;
-  }
-  .kpi:hover{border-color:var(--accent)}
-  .kpi .num{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
-  .kpi .num.accent{color:var(--accent)}
-  .kpi .num.good{color:var(--good)}
-  .kpi .lbl{font-size:11px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.04em;line-height:1.4}
-  .kpi .delta{margin-top:2px;font-size:11px;font-weight:700;color:var(--good)}
+  .panel-intro{font-size:15px;color:var(--sub);line-height:1.65}
+  .panel-intro b{color:var(--ink);font-weight:600}
 
-  /* ── chart row ── */
-  .chart-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:600px){.chart-row{grid-template-columns:1fr}}
-  .chart-box{
-    background:var(--bg);border:1px solid var(--hairline);
-    border-radius:var(--radius-sm);padding:20px;
-    display:flex;flex-direction:column;gap:10px;
+  /* ── stat strip ── */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  @media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{
+    background:var(--bg);border:1px solid var(--divider);
+    border-radius:8px;padding:16px;display:flex;flex-direction:column;gap:4px;
+    transition:border-color .15s;
   }
-  .chart-title{font-size:11px;font-weight:700;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.05em}
+  .stat:hover{border-color:var(--accent)}
+  .stat .v{font-size:28px;font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+  .stat .v.accent{color:var(--accent)}
+  .stat .v.green{color:var(--green)}
+  .stat .l{font-size:11px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:.04em}
+  .stat .delta{font-size:11px;font-weight:700;color:var(--green);margin-top:1px}
 
-  /* ── bars ── */
-  .bar-list{display:flex;flex-direction:column;gap:8px}
-  .bar-item{display:flex;align-items:center;gap:10px}
-  .bar-label{font-size:12px;font-weight:600;color:var(--ink);min-width:60px;text-align:right}
-  .bar-track{flex:1;height:8px;background:var(--hairline);border-radius:4px;overflow:hidden}
-  .bar-fill{height:100%;border-radius:4px;transition:width .6s ease}
-  .bar-fill.teal{background:var(--accent)}
-  .bar-fill.green{background:var(--good)}
+  /* ── comparison row ── */
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:560px){.compare{grid-template-columns:1fr}}
+  .comp{
+    background:var(--bg);border:1px solid var(--divider);
+    border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:12px;
+  }
+  .comp h4{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
 
-  /* ── project card ── */
-  .pc{
-    background:var(--bg);border:1px solid var(--hairline);
-    border-radius:var(--radius-sm);overflow:hidden;
+  .bar-row{display:flex;flex-direction:column;gap:10px}
+  .bar{display:flex;align-items:center;gap:10px}
+  .bar .tag{font-size:11px;font-weight:600;min-width:64px;text-align:right;color:var(--ink)}
+  .bar .tag.dim{color:var(--dim)}
+  .bar .track{flex:1;height:10px;background:var(--divider);border-radius:5px;overflow:hidden}
+  .bar .fill{height:100%;border-radius:5px;transition:width .4s ease}
+  .bar .fill.teal{background:var(--accent)}
+  .bar .fill.teal-fade{background:var(--accent);opacity:.25}
+  .bar .fill.green{background:var(--green)}
+  .bar .fill.green-fade{background:var(--green);opacity:.25}
+  .bar .val{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;min-width:36px;text-align:left}
+  .bar .val.on{color:var(--accent)}
+  .bar .val.good{color:var(--green)}
+  .bar .val.dim{color:var(--dim)}
+
+  /* ── project accordion ── */
+  .accordion{display:flex;flex-direction:column;gap:1px;background:var(--divider);border-radius:var(--radius);overflow:hidden}
+  .acc-item{background:var(--card)}
+  .acc-head{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 20px;cursor:pointer;user-select:none;gap:10px;
+    transition:background .1s;
   }
-  .pc-header{
-    padding:20px;display:flex;align-items:center;justify-content:space-between;
-    cursor:pointer;user-select:none;gap:12px;
-  }
-  .pc-header:hover{background:var(--hairline)}
-  .pc-title{font-size:15px;font-weight:700}
-  .pc-title .tag{
+  .acc-head:hover{background:var(--bg)}
+  .acc-head h4{font-size:14px;font-weight:600}
+  .acc-head .chip{
     display:inline-block;margin-left:8px;padding:2px 8px;
     font-size:10px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.05em;color:var(--accent);background:var(--accent-pale);
-    border-radius:4px;vertical-align:middle;
+    letter-spacing:.05em;color:var(--accent);background:var(--accent-bg);
+    border-radius:4px;
   }
-  .pc-chevron{font-size:18px;color:var(--ink-dim);transition:transform .25s}
-  .pc.open .pc-chevron{transform:rotate(180deg)}
-  .pc-body{display:none;padding:0 20px 20px;flex-direction:column;gap:14px}
-  .pc.open .pc-body{display:flex}
-  .pc-body p{font-size:13px;color:var(--ink-alt);line-height:1.6}
-  .pc-metrics{display:flex;flex-wrap:wrap;gap:20px}
-  .pc-metric .v{font-size:20px;font-weight:800;color:var(--accent)}
-  .pc-metric .l{font-size:11px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.05em}
+  .acc-head .arrow{font-size:16px;color:var(--dim);transition:transform .2s}
+  .acc-item.open .acc-head .arrow{transform:rotate(180deg)}
+  .acc-body{display:none;padding:0 20px 18px;flex-direction:column;gap:12px}
+  .acc-item.open .acc-body{display:flex}
+  .acc-body p{font-size:13px;color:var(--sub);line-height:1.6}
+
+  .mini-metrics{display:flex;flex-wrap:wrap;gap:16px}
+  .mm{display:flex;flex-direction:column;gap:2px}
+  .mm .num{font-size:18px;font-weight:800;color:var(--accent)}
+  .mm .lbl{font-size:10px;font-weight:600;color:var(--sub);text-transform:uppercase;letter-spacing:.05em}
 
   /* ── skills ── */
-  .skill-section{display:flex;flex-direction:column;gap:16px}
-  .skill-cat{display:flex;flex-direction:column;gap:4px}
-  .skill-cat-label{font-size:10px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
-  .skill-chips{display:flex;flex-wrap:wrap;gap:6px}
-  .sc{
-    padding:6px 12px;font-size:12px;font-weight:600;
-    color:var(--ink);background:var(--bg);border:1px solid var(--hairline);
+  .skill-block{display:flex;flex-direction:column;gap:18px}
+  .skill-group{display:flex;flex-direction:column;gap:6px}
+  .skill-group .grp-label{font-size:10px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.08em}
+  .tag-row{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{
+    padding:5px 12px;font-size:12px;font-weight:600;
+    color:var(--ink);background:var(--bg);border:1px solid var(--divider);
     border-radius:6px;cursor:default;transition:all .15s;
   }
-  .sc:hover{background:var(--accent-pale);border-color:var(--accent)}
-  .sc.hi{background:var(--accent-pale);border-color:var(--accent);color:var(--accent)}
+  .tag:hover{background:var(--accent-bg);border-color:var(--accent)}
+  .tag.prime{background:var(--accent-bg);border-color:var(--accent);color:var(--accent)}
 
   /* ── timeline ── */
-  .tl{display:flex;flex-direction:column;position:relative;padding-left:24px}
-  .tl::before{content:'';position:absolute;left:7px;top:8px;bottom:8px;width:2px;background:var(--hairline);border-radius:1px}
-  .tl-item{display:flex;flex-direction:column;gap:2px;padding-block:12px 16px;position:relative}
-  .tl-item::before{
-    content:'';position:absolute;left:-21px;top:16px;
+  .tl{position:relative;padding-left:28px}
+  .tl::before{content:'';position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:var(--divider);border-radius:1px}
+  .tl-step{position:relative;padding-bottom:24px;display:flex;flex-direction:column;gap:3px}
+  .tl-step:last-child{padding-bottom:0}
+  .tl-step::before{
+    content:'';position:absolute;left:-24px;top:5px;
     width:10px;height:10px;border-radius:50%;background:var(--accent);
-    box-shadow:0 0 0 4px var(--accent-pale);
+    box-shadow:0 0 0 4px var(--accent-bg);
   }
-  .tl-role{font-size:14px;font-weight:700}
-  .tl-where{font-size:12px;color:var(--ink-alt)}
-  .tl-note{font-size:12px;color:var(--ink-dim);font-style:italic}
-  .tl-year{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+  .tl-year{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+  .tl-title{font-size:14px;font-weight:700}
+  .tl-where{font-size:12px;color:var(--sub)}
+  .tl-note{font-size:12px;color:var(--dim);font-style:italic}
 
-  /* ── connect ── */
-  .connect-panel{
+  /* ── connect block ── */
+  .cta{
     background:var(--ink);border-radius:var(--radius);
-    padding:32px;text-align:center;
+    padding:36px 24px;text-align:center;
     display:flex;flex-direction:column;align-items:center;gap:12px;
   }
-  .connect-panel h3{color:#fff;font-size:18px}
-  .connect-panel p{color:rgba(255,255,255,.5);font-size:13px;max-width:400px}
-  .connect-panel a{
+  .cta h3{color:#fff;font-size:18px;font-weight:700}
+  .cta p{color:rgba(255,255,255,.5);font-size:13px;max-width:440px;line-height:1.55}
+  .cta a{
     display:inline-flex;align-items:center;gap:6px;
-    padding:10px 22px;font-size:13px;font-weight:700;
+    padding:10px 24px;font-size:13px;font-weight:700;
     color:var(--ink);background:#fff;border-radius:8px;
     text-decoration:none;transition:opacity .15s;
   }
-  .connect-panel a:hover{opacity:.85}
+  .cta a:hover{opacity:.9}
 </style>
 
 <div class="app">
-  <!-- ── header ── -->
-  <div class="header">
-    <div class="header-left">
-      <span class="header-name">Fajri Ashari</span>
-      <span class="header-role">Senior QA Automation Engineer</span>
+
+  <!-- top bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Fajri Ashari</h1>
+      <span>Senior QA Automation Engineer</span>
     </div>
-    <div class="header-badge"><span class="dot"></span> Available</div>
+    <div class="badge"><i></i> Available</div>
   </div>
 
-  <!-- ── tabs ── -->
-  <nav class="tabs">
-    <button class="tab active" data-tab="overview">Overview</button>
-    <button class="tab" data-tab="projects">Projects</button>
-    <button class="tab" data-tab="skills">Skills</button>
-    <button class="tab" data-tab="journey">Journey</button>
+  <!-- tabs -->
+  <nav>
+    <button class="on" data-tab="overview">Overview</button>
+    <button data-tab="projects">Projects</button>
+    <button data-tab="skills">Skills</button>
+    <button data-tab="journey">Journey</button>
   </nav>
 
-  <div class="panels">
-    <!-- ═══ OVERVIEW ═══ -->
-    <div class="panel-content active" id="overview">
-      <p style="font-size:15px;line-height:1.65;color:var(--ink-alt)">
-        I design and govern test automation that scales across <strong style="color:var(--ink)">31+ applications</strong> — not scripts for one app. Building the architecture, tooling, and AI workflows that keep quality consistent at every customer touchpoint.
-      </p>
+  <!-- ═══ OVERVIEW ═══ -->
+  <div class="panel show" id="overview">
+    <p class="panel-intro">
+      I design and govern test automation that scales across <b>31+ applications</b> — not scripts for one app. Building the architecture, tooling, and AI workflows that keep quality consistent at every customer touchpoint.
+    </p>
 
-      <div class="kpi-row">
-        <div class="kpi"><span class="num accent">31+</span><span class="lbl">Apps governed</span></div>
-        <div class="kpi"><span class="num good">85%</span><span class="lbl">Coverage</span></div>
-        <div class="kpi"><span class="num accent">4×</span><span class="lbl">Faster creation</span><span class="delta">20 min → 5 min</span></div>
-        <div class="kpi"><span class="num good">3.5×</span><span class="lbl">Throughput</span><span class="delta">7 → 25 / night</span></div>
-      </div>
-
-      <div class="chart-row">
-        <div class="chart-box">
-          <span class="chart-title">Before / After Agentic AI</span>
-          <div class="bar-list">
-            <div class="bar-item">
-              <span class="bar-label mono" style="font-size:11px">Test creation</span>
-              <div class="bar-track">
-                <div class="bar-fill teal" style="width:100%" title="5 min"></div>
-              </div>
-              <span class="mono" style="font-size:11px;color:var(--accent);min-width:36px">5m</span>
-            </div>
-            <div class="bar-item">
-              <span class="bar-label mono" style="font-size:11px;color:var(--ink-dim)">Before</span>
-              <div class="bar-track">
-                <div class="bar-fill teal" style="width:25%;opacity:.35" title="20 min"></div>
-              </div>
-              <span class="mono" style="font-size:11px;color:var(--ink-dim);min-width:36px">20m</span>
-            </div>
-          </div>
-          <div class="bar-list" style="margin-top:12px">
-            <div class="bar-item">
-              <span class="bar-label mono" style="font-size:11px">Throughput</span>
-              <div class="bar-track">
-                <div class="bar-fill green" style="width:100%" title="25 TC/night"></div>
-              </div>
-              <span class="mono" style="font-size:11px;color:var(--good);min-width:36px">25</span>
-            </div>
-            <div class="bar-item">
-              <span class="bar-label mono" style="font-size:11px;color:var(--ink-dim)">Before</span>
-              <div class="bar-track">
-                <div class="bar-fill green" style="width:28%;opacity:.35" title="7 TC/night"></div>
-              </div>
-              <span class="mono" style="font-size:11px;color:var(--ink-dim);min-width:36px">7</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="chart-box">
-          <span class="chart-title">Coverage Progress</span>
-          <div class="bar-list" style="margin-top:4px">
-            <div class="bar-item">
-              <span class="bar-label mono" style="font-size:11px">Use cases</span>
-              <div class="bar-track">
-                <div class="bar-fill green" style="width:88%" title="66/75"></div>
-              </div>
-              <span class="mono" style="font-size:11px;color:var(--good);min-width:44px">66/75</span>
-            </div>
-            <div class="bar-item">
-              <span class="bar-label mono" style="font-size:11px">Coverage</span>
-              <div class="bar-track">
-                <div class="bar-fill green" style="width:85%" title="85%"></div>
-              </div>
-              <span class="mono" style="font-size:11px;color:var(--good);min-width:44px">85%</span>
-            </div>
-          </div>
-          <p style="font-size:11px;color:var(--ink-dim);margin-top:8px">
-            66 of 75 critical use cases automated across digital applications
-          </p>
-        </div>
-      </div>
+    <div class="stats">
+      <div class="stat"><span class="v accent">31+</span><span class="l">Apps governed</span></div>
+      <div class="stat"><span class="v green">85%</span><span class="l">Coverage</span></div>
+      <div class="stat"><span class="v accent">4&times;</span><span class="l">Faster creation</span><span class="delta">20min &rarr; 5min</span></div>
+      <div class="stat"><span class="v green">3.5&times;</span><span class="l">Throughput</span><span class="delta">7 &rarr; 25/night</span></div>
     </div>
 
-    <!-- ═══ PROJECTS ═══ -->
-    <div class="panel-content" id="projects">
-      <p style="font-size:13px;color:var(--ink-alt);margin-bottom:4px">Click to expand details</p>
+    <div class="compare">
+      <div class="comp">
+        <h4>Before / After Agentic AI</h4>
+        <div class="bar-row">
+          <div class="bar">
+            <span class="tag dim">Before</span>
+            <div class="track"><div class="fill teal-fade" style="width:25%"></div></div>
+            <span class="val dim">20m</span>
+          </div>
+          <div class="bar">
+            <span class="tag">After</span>
+            <div class="track"><div class="fill teal" style="width:100%"></div></div>
+            <span class="val on">5m</span>
+          </div>
+        </div>
+        <div class="bar-row" style="margin-top:4px">
+          <div class="bar">
+            <span class="tag dim">Before</span>
+            <div class="track"><div class="fill green-fade" style="width:28%"></div></div>
+            <span class="val dim">7</span>
+          </div>
+          <div class="bar">
+            <span class="tag">After</span>
+            <div class="track"><div class="fill green" style="width:100%"></div></div>
+            <span class="val good">25</span>
+          </div>
+        </div>
+      </div>
 
-      <div class="pc open">
-        <div class="pc-header"><span class="pc-title">Agentic AI Testing at Scale <span class="tag">Featured</span></span><span class="pc-chevron">▾</span></div>
-        <div class="pc-body">
+      <div class="comp">
+        <h4>Coverage Progress</h4>
+        <div class="bar-row">
+          <div class="bar">
+            <span class="tag dim">Use cases</span>
+            <div class="track"><div class="fill green" style="width:88%"></div></div>
+            <span class="val good">66/75</span>
+          </div>
+          <div class="bar">
+            <span class="tag dim">Coverage</span>
+            <div class="track"><div class="fill green" style="width:85%"></div></div>
+            <span class="val good">85%</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--dim);margin-top:4px;line-height:1.5">
+          66 of 75 critical use cases automated across digital applications.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ PROJECTS ═══ -->
+  <div class="panel" id="projects">
+    <p style="font-size:13px;color:var(--dim)">Click a project to expand.</p>
+
+    <div class="accordion">
+      <div class="acc-item open">
+        <div class="acc-head">
+          <h4>Agentic AI Testing at Scale <span class="chip">Featured</span></h4>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="acc-body">
           <p>Led the adoption of Agentic AI across the full testing lifecycle for a major telecom's digital platform — from requirement analysis and test generation to self-healing and defect traceability. Built the harnesses, tooling, and MCP integrations that made AI-assisted testing reliable at production scale.</p>
-          <div class="pc-metrics">
-            <div class="pc-metric"><span class="v">66/75</span><span class="l">Use Cases Automated</span></div>
-            <div class="pc-metric"><span class="v">>85%</span><span class="l">Coverage</span></div>
-            <div class="pc-metric"><span class="v">4×</span><span class="l">Faster Creation</span></div>
-            <div class="pc-metric"><span class="v">3.5×</span><span class="l">Throughput</span></div>
-            <div class="pc-metric"><span class="v">31+</span><span class="l">Apps Onboarded</span></div>
+          <div class="mini-metrics">
+            <div class="mm"><span class="num">66/75</span><span class="lbl">Use Cases</span></div>
+            <div class="mm"><span class="num">&gt;85%</span><span class="lbl">Coverage</span></div>
+            <div class="mm"><span class="num">4&times;</span><span class="lbl">Faster</span></div>
+            <div class="mm"><span class="num">3.5&times;</span><span class="lbl">Throughput</span></div>
+            <div class="mm"><span class="num">31+</span><span class="lbl">Apps</span></div>
           </div>
         </div>
       </div>
 
-      <div class="pc">
-        <div class="pc-header"><span class="pc-title">Automation Architecture & Governance</span><span class="pc-chevron">▾</span></div>
-        <div class="pc-body">
-          <p>Designed the central automation architecture that standardizes testing across 31+ mobile and web applications. Defined framework conventions, reusable keyword libraries, test listeners, and naming standards — all distributed via a Hub &amp; Spoke submodule mechanism. Built adoption tooling: one script onboards any app.</p>
+      <div class="acc-item">
+        <div class="acc-head">
+          <h4>Automation Architecture &amp; Governance</h4>
+          <span class="arrow">&#9660;</span>
+        </div>
+        <div class="acc-body">
+          <p>Designed the central automation architecture that standardizes testing across 31+ mobile and web applications. Defined framework conventions, reusable keyword libraries, test listeners, and naming standards — distributed via a Hub &amp; Spoke submodule mechanism. Built adoption tooling: one script onboards any new application.</p>
         </div>
       </div>
 
-      <div class="pc">
-        <div class="pc-header"><span class="pc-title">MCP Harness — AI + Live Devices</span><span class="pc-chevron">▾</span></div>
-        <div class="pc-body">
-          <p>Built custom MCP (Model Context Protocol) harness integrating Playwright for web and mobile-mcp for live-device verification. This lets AI-assisted testing workflows validate locators, explore screens, and verify behavior on real devices — not just simulated environments.</p>
+      <div class="acc-item">
+        <div class="acc-head">
+          <h4>MCP Harness — AI &amp; Live Device Verification</h4>
+          <span class="arrow">&#9660;</span>
         </div>
-      </div>
-    </div>
-
-    <!-- ═══ SKILLS ═══ -->
-    <div class="panel-content" id="skills">
-      <div class="skill-section">
-        <div class="skill-cat">
-          <span class="skill-cat-label">Core Automation</span>
-          <div class="skill-chips">
-            <span class="sc hi">Katalon Studio</span>
-            <span class="sc">Appium</span>
-            <span class="sc">Playwright</span>
-            <span class="sc">Selenium WebDriver</span>
-            <span class="sc">API Testing</span>
-            <span class="sc">Mobile Testing</span>
-            <span class="sc">Web Testing</span>
-          </div>
-        </div>
-        <div class="skill-cat">
-          <span class="skill-cat-label">AI & Modern Testing</span>
-          <div class="skill-chips">
-            <span class="sc hi">Agentic AI Testing</span>
-            <span class="sc">MCP (Model Context Protocol)</span>
-            <span class="sc">Prompt Engineering</span>
-            <span class="sc">Self-Healing Automation</span>
-            <span class="sc">AI-Assisted Test Gen</span>
-          </div>
-        </div>
-        <div class="skill-cat">
-          <span class="skill-cat-label">Engineering</span>
-          <div class="skill-chips">
-            <span class="sc">Java</span>
-            <span class="sc">Groovy</span>
-            <span class="sc">Python</span>
-            <span class="sc">TypeScript</span>
-            <span class="sc">React</span>
-            <span class="sc">Shell Scripting</span>
-          </div>
-        </div>
-        <div class="skill-cat">
-          <span class="skill-cat-label">Infrastructure</span>
-          <div class="skill-chips">
-            <span class="sc">CI/CD Pipelines</span>
-            <span class="sc">Docker</span>
-            <span class="sc">Git / Submodules</span>
-            <span class="sc">Framework Architecture</span>
-            <span class="sc">QA Governance</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ═══ JOURNEY ═══ -->
-    <div class="panel-content" id="journey">
-      <div class="tl">
-        <div class="tl-item">
-          <span class="tl-year">Now</span>
-          <span class="tl-role">Senior QA Automation Engineer</span>
-          <span class="tl-where">Digital Platform — Leading telecom operator</span>
-          <span class="tl-note">Architecting automation for 31+ apps. Driving Agentic AI adoption. Building tooling, harnesses, governance.</span>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2021</span>
-          <span class="tl-role">Automation Engineer</span>
-          <span class="tl-where">Leading telecom operator</span>
-          <span class="tl-note">Built first frameworks from scratch. Katalon. CI/CD integration. The foundation.</span>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2019</span>
-          <span class="tl-role">Quality Assurance Engineer</span>
-          <span class="tl-where">Leading telecom operator</span>
-          <span class="tl-note">Manual → automation transition. Built testing discipline, process, standards.</span>
-        </div>
-        <div class="tl-item">
-          <span class="tl-year">2018</span>
-          <span class="tl-role">Software Developer</span>
-          <span class="tl-where">Leading telecom operator</span>
-          <span class="tl-note">Where it started. The dev foundation behind every framework I design today.</span>
+        <div class="acc-body">
+          <p>Built custom MCP (Model Context Protocol) harness integrating Playwright for web automation and mobile-mcp for live-device verification. This enables AI-assisted testing workflows to validate locators, explore screens, and verify behavior on real devices — not just simulated environments.</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ── connect ── -->
-  <div class="connect-panel">
+  <!-- ═══ SKILLS ═══ -->
+  <div class="panel" id="skills">
+    <div class="skill-block">
+      <div class="skill-group">
+        <span class="grp-label">Core Automation</span>
+        <div class="tag-row">
+          <span class="tag prime">Katalon Studio</span>
+          <span class="tag">Appium</span>
+          <span class="tag">Playwright</span>
+          <span class="tag">Selenium WebDriver</span>
+          <span class="tag">API Testing</span>
+          <span class="tag">Mobile Testing</span>
+          <span class="tag">Web Testing</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="grp-label">AI &amp; Modern Testing</span>
+        <div class="tag-row">
+          <span class="tag prime">Agentic AI Testing</span>
+          <span class="tag">MCP (Model Context Protocol)</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">Self-Healing Automation</span>
+          <span class="tag">AI-Assisted Test Gen</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="grp-label">Engineering</span>
+        <div class="tag-row">
+          <span class="tag">Java</span>
+          <span class="tag">Groovy</span>
+          <span class="tag">Python</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">React</span>
+          <span class="tag">Shell Scripting</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <span class="grp-label">Infrastructure</span>
+        <div class="tag-row">
+          <span class="tag">CI/CD Pipelines</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Git / Submodules</span>
+          <span class="tag">Framework Architecture</span>
+          <span class="tag">QA Governance</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ JOURNEY ═══ -->
+  <div class="panel" id="journey">
+    <div class="tl">
+      <div class="tl-step">
+        <span class="tl-year">Now</span>
+        <span class="tl-title">Senior QA Automation Engineer</span>
+        <span class="tl-where">Digital Platform — Leading telecom operator</span>
+        <span class="tl-note">Architecting automation for 31+ apps. Driving Agentic AI adoption. Building tooling, harnesses, and governance.</span>
+      </div>
+      <div class="tl-step">
+        <span class="tl-year">2021</span>
+        <span class="tl-title">Automation Engineer</span>
+        <span class="tl-where">Leading telecom operator</span>
+        <span class="tl-note">Built first frameworks from scratch. Katalon. CI/CD integration.</span>
+      </div>
+      <div class="tl-step">
+        <span class="tl-year">2019</span>
+        <span class="tl-title">Quality Assurance Engineer</span>
+        <span class="tl-where">Leading telecom operator</span>
+        <span class="tl-note">Manual to automation transition. Built testing discipline and standards.</span>
+      </div>
+      <div class="tl-step">
+        <span class="tl-year">2018</span>
+        <span class="tl-title">Software Developer</span>
+        <span class="tl-where">Leading telecom operator</span>
+        <span class="tl-note">Where it started. The dev foundation behind every framework I design today.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- connect -->
+  <div class="cta">
     <h3>Let's connect</h3>
     <p>Open to conversations about AI-driven quality engineering, scalable automation, and building systems that help teams ship with confidence.</p>
-    <a href="https://www.linkedin.com/in/fajri-sukma-ashari">Connect on LinkedIn →</a>
+    <a href="https://www.linkedin.com/in/fajri-sukma-ashari">Connect on LinkedIn &rarr;</a>
   </div>
+
 </div>
 
 <script>
-  // ── tabs ──
-  const tabs = document.querySelectorAll('.tab');
-  const panels = document.querySelectorAll('.panel-content');
-  tabs.forEach(t => {
-    t.addEventListener('click', () => {
-      const id = t.dataset.tab;
-      tabs.forEach(b => b.classList.remove('active'));
-      t.classList.add('active');
-      panels.forEach(p => p.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
+  // tabs
+  document.querySelectorAll('nav button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('on'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
+      btn.classList.add('on');
+      document.getElementById(btn.dataset.tab).classList.add('show');
+      history.replaceState(null, '', '#' + btn.dataset.tab);
     });
   });
 
-  // ── expandable project cards ──
-  document.querySelectorAll('.pc-header').forEach(h => {
-    h.addEventListener('click', () => h.parentElement.classList.toggle('open'));
+  // accordion
+  document.querySelectorAll('.acc-head').forEach(h => {
+    h.addEventListener('click', () => h.closest('.acc-item').classList.toggle('open'));
   });
 
-  // ── persist active tab in URL hash ──
-  const hash = window.location.hash.replace('#','');
-  if (hash && document.getElementById(hash)) {
-    tabs.forEach(t => t.classList.remove('active'));
-    panels.forEach(p => p.classList.remove('active'));
-    const target = document.querySelector(`[data-tab="${hash}"]`);
-    if (target) { target.classList.add('active'); document.getElementById(hash).classList.add('active'); }
+  // hash routing
+  const h = window.location.hash.replace('#','');
+  if (h && document.getElementById(h)) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('on'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('show'));
+    const b = document.querySelector('[data-tab="' + h + '"]');
+    if (b) { b.classList.add('on'); document.getElementById(h).classList.add('show'); }
   }
-  tabs.forEach(t => {
-    t.addEventListener('click', () => {
-      history.replaceState(null, '', '#' + t.dataset.tab);
-    });
-  });
 </script>
