@@ -96,6 +96,14 @@
     transition:all .15s;
   }
   .dl-btn:hover{background:var(--accent);color:#fff}
+  .dl-btn-big{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:14px 28px;font-size:13px;font-weight:700;
+    color:var(--accent);background:var(--card);
+    border:1.5px solid var(--accent);border-radius:10px;
+    text-decoration:none;transition:all .15s;
+  }
+  .dl-btn-big:hover{background:var(--accent);color:#fff}
 
   /* ── tabs ── */
   nav{display:flex;gap:2px}
@@ -240,10 +248,7 @@
       <h1>Fajri Ashari</h1>
       <span>Senior QA Automation Engineer</span>
     </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <a href="resume.html" class="dl-btn" title="Download Resume (PDF)">Resume</a>
-      <div class="badge"><i></i> Available</div>
-    </div>
+    <div class="badge"><i></i> Open to work</div>
   </div>
 
   <!-- tabs -->
@@ -441,6 +446,10 @@
   </div>
 
   <!-- connect -->
+  <div style="text-align:center">
+    <a href="resume.html" class="dl-btn-big">Download Resume</a>
+  </div>
+
   <div class="cta">
     <h3>Let's connect</h3>
     <p>Open to conversations about AI-driven quality engineering, scalable automation, and building systems that help teams ship with confidence.</p>
