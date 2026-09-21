@@ -1,438 +1,356 @@
-<title>Fajri Ashari — QA Portfolio</title>
+<title>Fajri Ashari — Portfolio</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=JetBrains+Mono:wght@400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
 
-  /* ── tokens ── */
   :root {
-    --bg:       #fafaf8;
+    --bg:       #fcfbf9;
     --surface:  #ffffff;
-    --ink:      #0f1117;
-    --ink-alt:  #545864;
-    --accent:   #0b7b7b;
-    --accent-bright: #099494;
-    --accent-soft: #e6f3f3;
-    --accent-ghost: #f3f9f9;
-    --metric:   #0b7b50;
-    --metric-soft: #e8f5ef;
-    --warn:     #c2780a;
-    --warn-soft: #fdf3e0;
-    --border:   #e8eae8;
-    --hairline: #eff0ee;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
-    --shadow-md: 0 4px 12px rgba(0,0,0,.06);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,.08);
-    --radius-sm: 10px;
-    --radius: 14px;
-    --radius-lg: 20px;
+    --ink:      #1a1a1a;
+    --ink-alt:  #63635f;
+    --ink-subtle: #a09e98;
+    --accent:   #1a6b6b;
+    --accent-soft: #eef5f5;
+    --accent-dim: #d9eaea;
+    --metric:   #1e7a50;
+    --metric-soft: #edf7f1;
+    --border:   #eae8e4;
+    --hairline: #f2f0ec;
+    --shadow: 0 2px 16px rgba(0,0,0,.06);
   }
 
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg:       #0b0d10;
-      --surface:  #15181d;
-      --ink:      #f0f1f3;
-      --ink-alt:  #9094a0;
-      --accent:   #2dd4bf;
-      --accent-bright: #5ee8d6;
-      --accent-soft: #0d2624;
-      --accent-ghost: #0e1c1b;
-      --metric:   #34d399;
-      --metric-soft: #0a2e1f;
-      --warn:     #f59e0b;
-      --warn-soft: #2d1f0a;
-      --border:   #252830;
-      --hairline: #1c1f25;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.2);
-      --shadow-md: 0 4px 12px rgba(0,0,0,.3);
-      --shadow-lg: 0 8px 24px rgba(0,0,0,.4);
+      --bg:       #0e0f0c;
+      --surface:  #181916;
+      --ink:      #ededeb;
+      --ink-alt:  #a09e98;
+      --ink-subtle: #706e68;
+      --accent:   #3dd4c4;
+      --accent-soft: #0f2422;
+      --accent-dim: #142a28;
+      --metric:   #4ade80;
+      --metric-soft: #0f2418;
+      --border:   #2a2822;
+      --hairline: #1e1c18;
+      --shadow: 0 2px 16px rgba(0,0,0,.4);
     }
   }
-
   :root[data-theme="dark"] {
-    --bg:       #0b0d10;
-    --surface:  #15181d;
-    --ink:      #f0f1f3;
-    --ink-alt:  #9094a0;
-    --accent:   #2dd4bf;
-    --accent-bright: #5ee8d6;
-    --accent-soft: #0d2624;
-    --accent-ghost: #0e1c1b;
-    --metric:   #34d399;
-    --metric-soft: #0a2e1f;
-    --warn:     #f59e0b;
-    --warn-soft: #2d1f0a;
-    --border:   #252830;
-    --hairline: #1c1f25;
-    --shadow-sm: 0 1px 2px rgba(0,0,0,.2);
-    --shadow-md: 0 4px 12px rgba(0,0,0,.3);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,.4);
+    --bg:       #0e0f0c;
+    --surface:  #181916;
+    --ink:      #ededeb;
+    --ink-alt:  #a09e98;
+    --ink-subtle: #706e68;
+    --accent:   #3dd4c4;
+    --accent-soft: #0f2422;
+    --accent-dim: #142a28;
+    --metric:   #4ade80;
+    --metric-soft: #0f2418;
+    --border:   #2a2822;
+    --hairline: #1e1c18;
+    --shadow: 0 2px 16px rgba(0,0,0,.4);
   }
 
-  /* ── reset ── */
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   body{
     font-family:'Inter',system-ui,-apple-system,sans-serif;
-    font-size:15px;line-height:1.6;color:var(--ink);
+    font-size:16px;line-height:1.65;color:var(--ink);
     background:var(--bg);
     -webkit-font-smoothing:antialiased;
-    padding-inline:clamp(16px,6vw,48px);
-    padding-block:56px 96px;
+    padding-inline:clamp(20px,6vw,56px);
+    padding-block:64px 100px;
   }
-  .page{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:64px}
-  section{display:flex;flex-direction:column;gap:20px}
-  .mono{font-family:'JetBrains Mono',monospace;font-size:13px}
+  .page{max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:72px}
+  section{display:flex;flex-direction:column;gap:16px}
+  p{color:var(--ink-alt);text-wrap:pretty}
+  hr{border:none;height:1px;background:var(--hairline);margin:0}
 
   /* ── type ── */
   h1{
-    font-size:clamp(38px,7vw,56px);font-weight:900;
-    line-height:1.08;letter-spacing:-0.025em;text-wrap:balance;
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:clamp(40px,8vw,64px);font-weight:700;
+    line-height:1.1;letter-spacing:-0.01em;
+    color:var(--ink);
   }
-  h2{font-size:22px;font-weight:700;letter-spacing:-0.015em}
+  h2{
+    font-family:'Playfair Display',Georgia,serif;
+    font-size:26px;font-weight:600;letter-spacing:-0.01em;
+    margin-bottom:4px;
+  }
   h3{
-    font-size:12px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.08em;color:var(--accent);margin-bottom:4px;
+    font-size:26px;font-weight:700;letter-spacing:-0.01em;
   }
-  p{color:var(--ink-alt);text-wrap:pretty}
-  .divider{height:1px;background:var(--hairline);border:none}
+  .eyebrow{
+    font-size:12px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.1em;color:var(--accent);
+  }
 
   /* ── hero ── */
-  .hero{gap:28px;padding-top:32px}
-  .hero-badge{
+  .hero{gap:24px;padding-top:40px}
+  .hero h1{margin-bottom:4px}
+  .hero .availability{
     display:inline-flex;align-items:center;gap:8px;
-    padding:6px 16px;font-size:12px;font-weight:600;
-    color:var(--accent);background:var(--accent-soft);
-    border-radius:100px;width:fit-content;text-transform:uppercase;
-    letter-spacing:.05em;
+    font-size:13px;font-weight:600;color:var(--accent);
+    margin-bottom:8px;
   }
-  .hero-badge .pulse{
+  .hero .availability .dot{
     width:7px;height:7px;border-radius:50%;background:var(--accent);
     animation:pulse 2s ease-in-out infinite;
   }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-  .hero-tagline{
-    font-size:18px;font-weight:500;color:var(--ink-alt);
-    line-height:1.55;max-width:620px;
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  .hero-intro{
+    font-size:18px;color:var(--ink-alt);line-height:1.6;max-width:600px;
   }
-  .hero-accent{color:var(--accent)}
+  .hero-intro strong{color:var(--ink);font-weight:600}
 
-  /* ── stat grid ── */
-  .stat-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-  }
-  @media(max-width:520px){.stat-grid{grid-template-columns:1fr}}
-  .stat-card{
+  /* ── project card ── */
+  .project{
     background:var(--surface);border:1px solid var(--border);
-    border-radius:var(--radius);padding:24px;
-    display:flex;flex-direction:column;gap:6px;
-    box-shadow:var(--shadow-sm);
-    transition:box-shadow .2s,border-color .2s;
+    border-radius:16px;overflow:hidden;box-shadow:var(--shadow);
   }
-  .stat-card:hover{box-shadow:var(--shadow-md);border-color:var(--accent)}
-  .stat-card .stat-num{
-    font-size:40px;font-weight:900;letter-spacing:-.03em;
-    line-height:1;font-variant-numeric:tabular-nums;
+  .project-body{padding:32px;display:flex;flex-direction:column;gap:20px}
+  .project-body p{font-size:15px}
+  .project-metrics{
+    display:flex;flex-wrap:wrap;gap:28px;
+    padding:0;margin-top:4px;
   }
-  .stat-card .stat-num.accent{color:var(--accent)}
-  .stat-card .stat-num.metric{color:var(--metric)}
-  .stat-card .stat-label{font-size:13px;font-weight:500;color:var(--ink-alt);line-height:1.4}
-  .stat-card .stat-delta{
-    font-size:12px;font-weight:600;color:var(--metric);
-    margin-top:2px;display:flex;align-items:center;gap:4px;
+  .project-metric{display:flex;flex-direction:column;gap:2px}
+  .project-metric .num{
+    font-size:28px;font-weight:800;letter-spacing:-.02em;
+    color:var(--accent);font-variant-numeric:tabular-nums;
   }
-  .stat-card.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .stat-card.dark .stat-label{color:rgba(255,255,255,.6)}
-  .stat-card.dark .stat-num{color:#fff}
+  .project-metric .lbl{font-size:12px;font-weight:600;color:var(--ink-alt);text-transform:uppercase;letter-spacing:.04em}
 
-  /* ── case study ── */
-  .study-card{
-    background:var(--surface);border:1px solid var(--border);
-    border-radius:var(--radius-lg);overflow:hidden;
-    box-shadow:var(--shadow-md);
-    display:flex;flex-direction:column;
+  .project-highlights{
+    display:flex;flex-direction:column;gap:0;
+    border-top:1px solid var(--hairline);padding-top:20px;margin-top:4px;
   }
-  .study-head{
-    background:var(--accent-ghost);padding:28px 28px 20px;
-    border-bottom:1px solid var(--hairline);
-    display:flex;flex-direction:column;gap:8px;
+  .highlight{
+    display:flex;gap:14px;align-items:flex-start;padding-block:11px;
   }
-  .study-head h2{color:var(--ink)}
-  .study-head p{font-size:14px}
-  .study-body{padding:24px 28px 28px;display:flex;flex-direction:column;gap:0}
-  .study-row{
-    display:flex;align-items:flex-start;gap:14px;
-    padding-block:12px;
+  .highlight+.highlight{border-top:1px solid var(--hairline)}
+  .highlight .hl-num{
+    font-family:'Inter',sans-serif;font-size:13px;font-weight:800;
+    color:var(--accent);min-width:24px;text-align:right;padding-top:2px;
   }
-  .study-row+.study-row{border-top:1px solid var(--hairline)}
-  .study-icon{
-    width:36px;min-width:36px;height:36px;
-    border-radius:8px;display:flex;align-items:center;justify-content:center;
-    font-size:16px;font-weight:700;
-  }
-  .study-icon.green{background:var(--metric-soft);color:var(--metric)}
-  .study-icon.teal{background:var(--accent-soft);color:var(--accent)}
-  .study-icon.amber{background:var(--warn-soft);color:var(--warn)}
-  .study-text{display:flex;flex-direction:column;gap:2px}
-  .study-title{font-size:14px;font-weight:600;color:var(--ink)}
-  .study-desc{font-size:13px;color:var(--ink-alt);line-height:1.5}
+  .highlight .hl-text{font-size:14px;color:var(--ink);line-height:1.55}
+  .highlight .hl-sub{font-size:13px;color:var(--ink-alt);display:block;margin-top:1px}
 
-  /* ── skills ── */
-  .skill-cols{display:flex;flex-direction:column;gap:24px}
-  .skill-group{display:flex;flex-direction:column;gap:4px}
-  .skill-group-label{
-    font-size:11px;font-weight:700;text-transform:uppercase;
-    letter-spacing:.07em;color:var(--ink-alt);margin-bottom:4px;
-  }
-  .skill-tags{display:flex;flex-wrap:wrap;gap:8px}
-  .skill-tag{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:8px 14px;font-size:13px;font-weight:600;
+  /* ── skills flow ── */
+  .skill-flow{display:flex;flex-wrap:wrap;gap:10px}
+  .chip{
+    padding:8px 16px;font-size:13px;font-weight:600;
     color:var(--ink);background:var(--surface);
-    border:1px solid var(--border);border-radius:8px;
+    border:1px solid var(--border);border-radius:100px;
     transition:all .15s;
   }
-  .skill-tag:hover{background:var(--accent-ghost);border-color:var(--accent)}
-  .skill-tag .dot{
-    width:8px;height:8px;border-radius:3px;background:var(--accent);
-  }
+  .chip:hover{background:var(--accent-soft);border-color:var(--accent)}
+  .chip.pri{background:var(--accent-soft);border-color:var(--accent-dim);color:var(--accent)}
 
   /* ── timeline ── */
-  .timeline{display:flex;flex-direction:column;position:relative}
-  .timeline::before{
-    content:'';position:absolute;left:13px;top:6px;bottom:6px;
-    width:2px;background:var(--hairline);border-radius:1px;
+  .journey{display:flex;flex-direction:column;gap:0}
+  .stop{display:flex;gap:20px;padding-block:18px 20px}
+  .stop+.stop{border-top:1px solid var(--hairline)}
+  .stop-year{
+    font-size:13px;font-weight:800;color:var(--accent);
+    min-width:56px;letter-spacing:.03em;padding-top:1px;
   }
-  .tl-item{display:flex;gap:20px;padding-block:14px 18px;position:relative}
-  .tl-marker{
-    width:10px;min-width:10px;height:10px;
-    border-radius:50%;background:var(--accent);
-    margin-top:5px;position:relative;z-index:1;
-    box-shadow:0 0 0 4px var(--accent-soft);
-  }
-  .tl-content{display:flex;flex-direction:column;gap:3px}
-  .tl-role{font-size:15px;font-weight:700;color:var(--ink)}
-  .tl-meta{font-size:13px;color:var(--ink-alt);font-weight:500}
-  .tl-year{
-    font-size:11px;font-weight:700;color:var(--accent);
-    text-transform:uppercase;letter-spacing:.06em;
-    min-width:70px;padding-top:1px;
-  }
+  .stop-body{display:flex;flex-direction:column;gap:3px}
+  .stop-role{font-size:16px;font-weight:700;color:var(--ink)}
+  .stop-where{font-size:14px;color:var(--ink-alt)}
+  .stop-note{font-size:13px;color:var(--ink-subtle);font-style:italic}
 
   /* ── footer ── */
-  .footer{
-    background:var(--ink);border-radius:var(--radius-lg);
-    padding:40px 32px;text-align:center;
-    display:flex;flex-direction:column;align-items:center;gap:14px;
-  }
-  .footer h2{color:#fff}
-  .footer p{color:rgba(255,255,255,.55);max-width:480px;font-size:14px}
   .cta{
+    background:var(--ink);color:#fff;border-radius:16px;
+    padding:44px 36px;text-align:center;
+    display:flex;flex-direction:column;align-items:center;gap:16px;
+  }
+  .cta h2{color:#fff;margin-bottom:0}
+  .cta p{color:rgba(255,255,255,.5);max-width:460px;font-size:15px}
+  .cta-btn{
     display:inline-flex;align-items:center;gap:8px;
     padding:14px 28px;font-size:14px;font-weight:700;
-    color:#fff;background:var(--accent);
-    border:none;border-radius:10px;cursor:pointer;text-decoration:none;
-    transition:background .15s;
+    color:var(--ink);background:#fff;border:none;
+    border-radius:10px;cursor:pointer;text-decoration:none;
+    transition:opacity .15s;
   }
-  .cta:hover{background:var(--accent-bright)}
+  .cta-btn:hover{opacity:.85}
 
-  /* ── responsive touch-up ── */
   @media(max-width:480px){
-    .page{gap:48px}
-    .stat-card{padding:20px}
-    .stat-card .stat-num{font-size:32px}
-    .study-head,.study-body{padding-inline:20px}
+    .project-body{padding:24px}
+    .project-metrics{gap:20px}
+    .project-metric .num{font-size:24px}
+    .cta{padding:32px 24px}
   }
 </style>
 
 <div class="page">
 
-  <!-- ═══════ HERO ═══════ -->
+  <!-- ═══ HERO ═══ -->
   <section class="hero">
-    <div class="hero-badge"><span class="pulse"></span> Open to work</div>
-    <div>
-      <h1>Fajri <span class="hero-accent">Ashari</span></h1>
-      <p class="hero-tagline" style="margin-top:12px">
-        Senior QA Engineer. I build test automation that scales across <strong>31+ applications</strong>, not just one — designing the architecture, governance, and AI-driven workflows that keep quality consistent at every touchpoint.
-      </p>
-    </div>
-
-    <div class="stat-grid">
-      <div class="stat-card dark">
-        <span class="stat-num">31+</span>
-        <span class="stat-label">Mobile &amp; web apps under one automation standard</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num metric">85%</span>
-        <span class="stat-label">Automation coverage on critical user journeys</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num accent">4×</span>
-        <span class="stat-label">Faster creation after Agentic AI adoption</span>
-        <span class="stat-delta">20 min → 5 min per case</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num metric">3.5×</span>
-        <span class="stat-label">Tester throughput increase</span>
-        <span class="stat-delta">7 → 25 test cases per night</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════ ABOUT ═══════ -->
-  <section>
-    <h3>About</h3>
-    <p>
-      I started as a software developer in 2018. A year later I moved into QA — and by 2021 I was fully focused on automation engineering. That blend of dev-thinking and QA-discipline is what lets me build automation that teams actually trust and maintain, at a scale most QA never touch.
-    </p>
-    <p>
-      Today I design and govern the test automation standards for an entire digital ecosystem — mobile apps, web platforms, e-commerce, self-service portals, SalesForce — making sure every release ships with the same quality bar, no matter which team or tech stack is behind it.
+    <div class="availability"><span class="dot"></span> Available for new opportunities</div>
+    <h1>Fajri Ashari</h1>
+    <p class="hero-intro">
+      Senior QA Engineer who <strong>designs automation that scales across 31+ applications</strong> — not scripts for one app. I build the architecture, tooling, and AI workflows that make quality consistent at every touchpoint.
     </p>
   </section>
 
-  <hr class="divider">
-
-  <!-- ═══════ CASE STUDY ═══════ -->
+  <!-- ═══ PROJECT ═══ -->
   <section>
-    <h3>Featured work</h3>
-    <div class="study-card">
-      <div class="study-head">
-        <h2>Agentic AI Testing — At Scale</h2>
-        <p>Drove AI adoption across the full testing lifecycle for a major telecom's digital platform — from requirement analysis and automated test generation to self-healing and defect traceability. Built the tooling, harnesses, and MCP integrations that made AI-assisted testing reliable at production scale.</p>
-      </div>
-      <div class="study-body">
-        <div class="study-row">
-          <div class="study-icon green">85</div>
-          <div class="study-text">
-            <span class="study-title">>85% automation coverage</span>
-            <span class="study-desc">66 of 75 critical use cases automated across digital applications</span>
+    <span class="eyebrow">Featured project</span>
+    <div class="project">
+      <div class="project-body">
+        <h2>Agentic AI Testing at Scale</h2>
+        <p>
+          I led the adoption of Agentic AI across the full testing lifecycle for a major telecom's digital platform — from requirement analysis and test generation to self-healing and defect traceability. Built the harnesses, tooling, and MCP integrations that made AI-assisted testing reliable at production scale.
+        </p>
+
+        <div class="project-metrics">
+          <div class="project-metric">
+            <span class="num">85%</span>
+            <span class="lbl">Coverage</span>
+          </div>
+          <div class="project-metric">
+            <span class="num">4×</span>
+            <span class="lbl">Faster creation</span>
+          </div>
+          <div class="project-metric">
+            <span class="num">3.5×</span>
+            <span class="lbl">Throughput</span>
+          </div>
+          <div class="project-metric">
+            <span class="num">31+</span>
+            <span class="lbl">Apps governed</span>
           </div>
         </div>
-        <div class="study-row">
-          <div class="study-icon teal">4×</div>
-          <div class="study-text">
-            <span class="study-title">4× faster test creation</span>
-            <span class="study-desc">Reduced from 20 minutes to 5 minutes per use case with AI-assisted generation</span>
+
+        <div class="project-highlights">
+          <div class="highlight">
+            <span class="hl-num">01</span>
+            <div>
+              <span class="hl-text">Automated 66 of 75 critical use cases with AI-assisted test generation</span>
+              <span class="hl-sub">20 min → 5 min per use case</span>
+            </div>
           </div>
-        </div>
-        <div class="study-row">
-          <div class="study-icon green">3.5</div>
-          <div class="study-text">
-            <span class="study-title">3.5× tester throughput</span>
-            <span class="study-desc">From 7 to 25 test cases executed per tester per night</span>
+          <div class="highlight">
+            <span class="hl-num">02</span>
+            <div>
+              <span class="hl-text">Increased tester throughput from 7 to 25 test cases per night</span>
+              <span class="hl-sub">Coverage across mobile &amp; web digital applications</span>
+            </div>
           </div>
-        </div>
-        <div class="study-row">
-          <div class="study-icon teal">MCP</div>
-          <div class="study-text">
-            <span class="study-title">Custom MCP harness</span>
-            <span class="study-desc">Integrated Playwright &amp; mobile-mcp for live-device locator verification inside AI workflows</span>
+          <div class="highlight">
+            <span class="hl-num">03</span>
+            <div>
+              <span class="hl-text">Built custom MCP harness integrating Playwright and mobile-mcp</span>
+              <span class="hl-sub">Live-device locator verification inside AI workflows</span>
+            </div>
           </div>
-        </div>
-        <div class="study-row">
-          <div class="study-icon amber">31</div>
-          <div class="study-text">
-            <span class="study-title">Seamless onboarding at scale</span>
-            <span class="study-desc">Designed adoption tooling that onboards new apps into the ecosystem with a single script</span>
+          <div class="highlight">
+            <span class="hl-num">04</span>
+            <div>
+              <span class="hl-text">Designed adoption tooling — one script onboards any app</span>
+              <span class="hl-sub">Seamless scaling across 31+ mobile &amp; web applications</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ SKILLS ═══════ -->
+  <!-- ═══ ABOUT ═══ -->
   <section>
-    <h3>Stack</h3>
-    <div class="skill-cols">
-      <div class="skill-group">
-        <span class="skill-group-label">Core Automation</span>
-        <div class="skill-tags">
-          <span class="skill-tag"><span class="dot"></span>Katalon Studio</span>
-          <span class="skill-tag"><span class="dot"></span>Appium</span>
-          <span class="skill-tag"><span class="dot"></span>Playwright</span>
-          <span class="skill-tag"><span class="dot"></span>Selenium WebDriver</span>
-          <span class="skill-tag"><span class="dot"></span>API Testing</span>
+    <span class="eyebrow">About</span>
+    <p>
+      I started as a software developer in 2018. A year later I moved into QA, and by 2021 I was fully focused on automation engineering. That blend of dev-thinking and QA-discipline is what lets me build automation that teams actually trust and maintain — at a scale most QA never get to touch.
+    </p>
+    <p>
+      What drives me: taking a fragmented testing landscape and turning it into one cohesive quality program. When I'm not designing frameworks, I'm probably deep in a Katalon project, writing tooling scripts, or experimenting with how AI can make testing smarter.
+    </p>
+  </section>
+
+  <hr>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section>
+    <span class="eyebrow">What I work with</span>
+    <div class="skill-flow">
+      <span class="chip pri">Katalon Studio</span>
+      <span class="chip pri">Agentic AI Testing</span>
+      <span class="chip pri">Framework Architecture</span>
+      <span class="chip">MCP / Playwright</span>
+      <span class="chip">Appium</span>
+      <span class="chip">Selenium WebDriver</span>
+      <span class="chip">API Testing</span>
+      <span class="chip">CI/CD</span>
+      <span class="chip">Java / Groovy</span>
+      <span class="chip">Python</span>
+      <span class="chip">React / TypeScript</span>
+      <span class="chip">Docker</span>
+      <span class="chip">Git / Submodules</span>
+      <span class="chip">Mobile Testing</span>
+      <span class="chip">Web Testing</span>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- ═══ JOURNEY ═══ -->
+  <section>
+    <span class="eyebrow">Journey</span>
+    <div class="journey">
+      <div class="stop">
+        <span class="stop-year">Now</span>
+        <div class="stop-body">
+          <span class="stop-role">Senior QA Automation Engineer</span>
+          <span class="stop-where">Digital Platform — Leading telecom operator</span>
+          <span class="stop-note">Designing automation architecture, governing 31+ apps, driving Agentic AI adoption</span>
         </div>
       </div>
-      <div class="skill-group">
-        <span class="skill-group-label">AI &amp; Modern Testing</span>
-        <div class="skill-tags">
-          <span class="skill-tag"><span class="dot"></span>Agentic AI Testing</span>
-          <span class="skill-tag"><span class="dot"></span>MCP (Model Context Protocol)</span>
-          <span class="skill-tag"><span class="dot"></span>Prompt Engineering</span>
-          <span class="skill-tag"><span class="dot"></span>Self-Healing Automation</span>
+      <div class="stop">
+        <span class="stop-year">2021</span>
+        <div class="stop-body">
+          <span class="stop-role">Automation Engineer</span>
+          <span class="stop-where">Leading telecom operator</span>
+          <span class="stop-note">Built first automation frameworks from scratch. Katalon, CI/CD integration.</span>
         </div>
       </div>
-      <div class="skill-group">
-        <span class="skill-group-label">Engineering</span>
-        <div class="skill-tags">
-          <span class="skill-tag"><span class="dot"></span>Java / Groovy</span>
-          <span class="skill-tag"><span class="dot"></span>Python</span>
-          <span class="skill-tag"><span class="dot"></span>React / TypeScript</span>
-          <span class="skill-tag"><span class="dot"></span>Shell Scripting</span>
+      <div class="stop">
+        <span class="stop-year">2019</span>
+        <div class="stop-body">
+          <span class="stop-role">Quality Assurance Engineer</span>
+          <span class="stop-where">Leading telecom operator</span>
+          <span class="stop-note">Manual → automation transition. Built testing discipline across teams.</span>
         </div>
       </div>
-      <div class="skill-group">
-        <span class="skill-group-label">Infrastructure</span>
-        <div class="skill-tags">
-          <span class="skill-tag"><span class="dot"></span>CI/CD Pipelines</span>
-          <span class="skill-tag"><span class="dot"></span>Docker</span>
-          <span class="skill-tag"><span class="dot"></span>Git / Submodules</span>
-          <span class="skill-tag"><span class="dot"></span>Framework Architecture</span>
+      <div class="stop">
+        <span class="stop-year">2018</span>
+        <div class="stop-body">
+          <span class="stop-role">Software Developer</span>
+          <span class="stop-where">Leading telecom operator</span>
+          <span class="stop-note">Started here. The dev foundation behind every framework I design today.</span>
         </div>
       </div>
     </div>
   </section>
 
-  <hr class="divider">
+  <hr>
 
-  <!-- ═══════ TIMELINE ═══════ -->
+  <!-- ═══ CERTIFICATIONS ═══ -->
   <section>
-    <h3>Experience</h3>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-year">Now</div>
-        <div class="tl-marker"></div>
-        <div class="tl-content">
-          <span class="tl-role">Senior QA Automation Engineer</span>
-          <span class="tl-meta">Digital Platform — Leading telecom operator</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2019</div>
-        <div class="tl-marker"></div>
-        <div class="tl-content">
-          <span class="tl-role">Quality Assurance Engineer</span>
-          <span class="tl-meta">Leading telecom operator</span>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-year">2018</div>
-        <div class="tl-marker"></div>
-        <div class="tl-content">
-          <span class="tl-role">Software Developer</span>
-          <span class="tl-meta">Leading telecom operator</span>
-        </div>
-      </div>
+    <span class="eyebrow">Certifications</span>
+    <div class="skill-flow">
+      <span class="chip pri">Katalon Certified Professional</span>
+      <span class="chip pri">Katalon Agentic AI Workshop Graduate</span>
     </div>
   </section>
 
-  <hr class="divider">
-
-  <!-- ═══════ CERTIFICATIONS ═══════ -->
-  <section>
-    <h3>Certifications</h3>
-    <div class="skill-tags">
-      <span class="skill-tag"><span class="dot"></span>Katalon Certified Professional</span>
-      <span class="skill-tag"><span class="dot"></span>Katalon Agentic AI Workshop Graduate</span>
-    </div>
-  </section>
-
-  <!-- ═══════ CONNECT ═══════ -->
-  <section class="footer">
-    <h2>Let's connect</h2>
+  <!-- ═══ CONNECT ═══ -->
+  <section class="cta">
+    <h2>Let's talk</h2>
     <p>I'm always open to conversations about AI-driven quality engineering, scalable test automation, and building systems that help teams ship with confidence.</p>
-    <a href="https://www.linkedin.com/in/fajri-sukma-ashari" class="cta">Connect on LinkedIn →</a>
+    <a href="https://www.linkedin.com/in/fajri-sukma-ashari" class="cta-btn">Connect on LinkedIn →</a>
   </section>
 
 </div>
