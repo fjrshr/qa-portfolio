@@ -1,0 +1,455 @@
+<title>QA Automation Portfolio</title>
+<style>
+  /* ── fonts ── */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap');
+
+  /* ── token system ── */
+  :root {
+    --ground:    #f8f9fa;
+    --surface:   #ffffff;
+    --ink:       #1a1d23;
+    --ink-muted: #6b7280;
+    --ink-light: #9ca3af;
+    --accent:    #0d6e6e;
+    --accent-soft: #e6f2f2;
+    --metric:    #059669;
+    --metric-bg: #ecfdf5;
+    --border:    #e5e7eb;
+    --border-light: #f3f4f6;
+    --shadow:    0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --radius:    12px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:    #0f1117;
+      --surface:   #1a1d23;
+      --ink:       #f3f4f6;
+      --ink-muted: #9ca3af;
+      --ink-light: #6b7280;
+      --accent:    #2dd4bf;
+      --accent-soft: #0d2626;
+      --metric:    #34d399;
+      --metric-bg: #0a2e1f;
+      --border:    #2d3139;
+      --border-light: #1f2228;
+      --shadow:    0 1px 3px rgba(0,0,0,.25);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:    #0f1117;
+    --surface:   #1a1d23;
+    --ink:       #f3f4f6;
+    --ink-muted: #9ca3af;
+    --ink-light: #6b7280;
+    --accent:    #2dd4bf;
+    --accent-soft: #0d2626;
+    --metric:    #34d399;
+    --metric-bg: #0a2e1f;
+    --border:    #2d3139;
+    --border-light: #1f2228;
+    --shadow:    0 1px 3px rgba(0,0,0,.25);
+  }
+
+  /* ── reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--ground);
+    -webkit-font-smoothing: antialiased;
+    padding-inline: clamp(16px, 5vw, 48px);
+    padding-block: 48px 80px;
+  }
+
+  /* ── layout ── */
+  .page {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  section { display: flex; flex-direction: column; gap: 20px; }
+
+  /* ── typography ── */
+  h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    margin-bottom: 4px;
+  }
+  p { color: var(--ink-muted); text-wrap: pretty; }
+
+  /* ── hero ── */
+  .hero { gap: 32px; padding-top: 24px; }
+  .hero-name { color: var(--ink); }
+  .hero .accent { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    max-width: 600px;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 100px;
+    width: fit-content;
+  }
+  .hero-tag .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── stat tiles ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .stat-tile {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-number.green { color: var(--metric); }
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    line-height: 1.4;
+  }
+  .stat-delta {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--metric);
+    margin-top: 2px;
+  }
+
+  /* ── case-study card ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .card-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .card-list li {
+    font-size: 14px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+    padding-left: 20px;
+    position: relative;
+  }
+  .card-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  /* ── skill grid ── */
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+  }
+  .skill-chip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    transition: border-color 0.15s;
+  }
+  .skill-chip:hover { border-color: var(--accent); }
+  .skill-chip .icon {
+    width: 18px; height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+
+  /* ── timeline ── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 15px;
+    top: 8px;
+    bottom: 8px;
+    width: 1px;
+    background: var(--border);
+  }
+  .tl-item {
+    display: flex;
+    gap: 16px;
+    padding-block: 12px 16px;
+    position: relative;
+  }
+  .tl-dot {
+    width: 10px; height: 10px;
+    min-width: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .tl-year {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    min-width: 44px;
+  }
+  .tl-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tl-role {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .tl-place {
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+
+  /* ── connect ── */
+  .connect {
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .connect h2 { color: var(--ink); }
+  .connect p { max-width: 480px; }
+  .connect-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+  .connect-btn:hover { opacity: 0.9; }
+
+  /* ── divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    border: none;
+  }
+</style>
+
+<div class="page">
+
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero">
+    <div class="hero-tag"><span class="dot"></span> Open to opportunities</div>
+    <h1 class="hero-name">Fajri <span class="accent">Ashri</span></h1>
+    <p class="hero-subtitle">
+      Senior Quality Assurance Engineer. I build test automation that scales across 31+ applications, not just one. I design and govern the central automation architecture that powers AI-driven quality engineering across every customer touchpoint.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-tile">
+        <span class="stat-number">31+</span>
+        <span class="stat-label">Mobile & web apps governed by one automation standard</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-number green">85%</span>
+        <span class="stat-label">Automation coverage on critical user journeys</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-number">4×</span>
+        <span class="stat-label">Faster test creation after Agentic AI adoption</span>
+        <span class="stat-delta">20 min → 5 min per use case</span>
+      </div>
+      <div class="stat-tile">
+        <span class="stat-number green">3.5×</span>
+        <span class="stat-label">Tester throughput increase</span>
+        <span class="stat-delta">7 → 25 test cases per night</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ ABOUT ═══════ -->
+  <section>
+    <h3>About</h3>
+    <p>
+      I started as a software developer in 2018, moved into QA in 2019, and sharpened into automation engineering in 2021. That blend of dev-thinking and QA-discipline helps me build automation that teams actually trust and maintain — at scale, not just for one app.
+    </p>
+    <p>
+      Today, I design and govern the automation standards powering every customer touchpoint — from mobile apps to web platforms including e-commerce, self-service portals, and SalesForce — ensuring one consistent quality bar across the entire digital ecosystem.
+    </p>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════ CASE STUDY ═══════ -->
+  <section>
+    <h3>Featured case study</h3>
+    <div class="card">
+      <div class="card-title">Agentic AI Testing at Scale — Digital Platform</div>
+      <p>Led the adoption of Agentic AI across the digital applications testing lifecycle for a major telecom operator — from requirement analysis and automated test generation to self-healing and defect traceability. Built the tooling, harness scripts, and MCP integrations that let AI-assisted testing run reliably at production scale.</p>
+      <ul class="card-list">
+        <li>Automated 66 of 75 critical use cases, achieving over 85% automation coverage</li>
+        <li>Cut automation creation time from 20 minutes to 5 minutes per use case</li>
+        <li>Boosted tester throughput from 7 to 25 test cases per tester per night</li>
+        <li>Designed the adoption tooling that seamlessly onboards new apps into the automation ecosystem</li>
+        <li>Built MCP (Model Context Protocol) harnesses using Playwright and mobile-mcp for live device verification</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════ SKILLS ═══════ -->
+  <section>
+    <h3>Skills & tools</h3>
+    <div class="skill-grid">
+      <div class="skill-chip"><span class="icon">🧪</span>Katalon Studio</div>
+      <div class="skill-chip"><span class="icon">🤖</span>Agentic AI Testing</div>
+      <div class="skill-chip"><span class="icon">📱</span>Mobile Automation</div>
+      <div class="skill-chip"><span class="icon">🌐</span>Web Test Automation</div>
+      <div class="skill-chip"><span class="icon">🔗</span>MCP / Playwright</div>
+      <div class="skill-chip"><span class="icon">🏗️</span>Framework Design</div>
+      <div class="skill-chip"><span class="icon">⚙️</span>CI/CD Integration</div>
+      <div class="skill-chip"><span class="icon">🐍</span>Python</div>
+      <div class="skill-chip"><span class="icon">☕</span>Java / Groovy</div>
+      <div class="skill-chip"><span class="icon">📦</span>Docker</div>
+      <div class="skill-chip"><span class="icon">🔬</span>Appium</div>
+      <div class="skill-chip"><span class="icon">⚛️</span>React / TypeScript</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════ TIMELINE ═══════ -->
+  <section>
+    <h3>Experience</h3>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2021–Now</div>
+        <div class="tl-body">
+          <div class="tl-role">Senior QA Automation Engineer</div>
+          <div class="tl-place">Leading telecom operator — Digital Platform Division</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2019–2021</div>
+        <div class="tl-body">
+          <div class="tl-role">Quality Assurance Engineer</div>
+          <div class="tl-place">Leading telecom operator</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">2018–2019</div>
+        <div class="tl-body">
+          <div class="tl-role">Software Developer</div>
+          <div class="tl-place">Leading telecom operator</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════ CERTIFICATIONS ═══════ -->
+  <section>
+    <h3>Certifications</h3>
+    <div class="skill-grid">
+      <div class="skill-chip"><span class="icon">📜</span>Katalon Certified Professional</div>
+      <div class="skill-chip"><span class="icon">🎓</span>Agentic AI Workshop — Katalon</div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ═══════ CONNECT ═══════ -->
+  <section class="connect">
+    <h2>Let's connect</h2>
+    <p>I'm always open to conversations about AI-driven quality engineering, scalable test automation, and building systems that help teams ship with confidence.</p>
+    <a href="https://www.linkedin.com/in/fajriashr" class="connect-btn">Connect on LinkedIn →</a>
+  </section>
+
+</div>
