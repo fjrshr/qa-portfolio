@@ -1,7 +1,34 @@
-<title>Fajri Ashari — Portfolio</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fajri Sukma Ashari — Senior QA Automation Engineer (SDET)</title>
+<meta name="description" content="Senior QA Automation Engineer (SDET) specializing in Agentic AI-driven testing and scalable framework architecture — governing test automation for 31+ mobile and web applications. Katalon Expert Certified.">
+<meta name="author" content="Fajri Sukma Ashari">
+<meta name="theme-color" content="#0f7a6b">
+<link rel="canonical" href="https://fjrshr.github.io/qa-portfolio/">
+
+<!-- Open Graph / social preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fjrshr.github.io/qa-portfolio/">
+<meta property="og:title" content="Fajri Sukma Ashari — Senior QA Automation Engineer (SDET)">
+<meta property="og:description" content="Agentic AI testing at scale: 31+ apps governed, 85%+ coverage, 4× faster test creation. Katalon Expert Certified.">
+<meta property="og:image" content="https://fjrshr.github.io/qa-portfolio/og-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fajri Sukma Ashari — Senior QA Automation Engineer (SDET)">
+<meta name="twitter:description" content="Agentic AI testing at scale: 31+ apps governed, 85%+ coverage, 4× faster test creation.">
+<meta name="twitter:image" content="https://fjrshr.github.io/qa-portfolio/og-cover.png">
+
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f7a6b'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Inter,sans-serif' font-weight='700' font-size='28' fill='white'%3EFA%3C/text%3E%3C/svg%3E">
+
+<!-- Fonts (non-blocking) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<script>try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@500;600&display=swap');
 
   /* ── design tokens ── */
   :root {
@@ -20,6 +47,7 @@
     --border:   #e6e6e2;
     --divider:  #f0f0ec;
     --shadow:  0 1px 3px rgba(0,0,0,.04);
+    --appring: rgba(0,0,0,.12);
     --radius:  12px;
     --gap:     16px;
   }
@@ -41,6 +69,7 @@
       --border:   #2a2a2e;
       --divider:  #1e1e22;
       --shadow:  0 1px 3px rgba(0,0,0,.2);
+      --appring: transparent;
     }
   }
   :root[data-theme="dark"] {
@@ -59,6 +88,7 @@
     --border:   #2a2a2e;
     --divider:  #1e1e22;
     --shadow:  0 1px 3px rgba(0,0,0,.2);
+    --appring: transparent;
   }
 
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -84,9 +114,31 @@
     padding:5px 11px;font-size:11px;font-weight:700;
     color:var(--green);background:var(--green-bg);
     border-radius:20px;text-transform:uppercase;letter-spacing:.04em;
+    animation:badge-glow 2s ease-in-out infinite;
   }
   .badge i{display:block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+  .topbar-right{display:flex;align-items:center;gap:8px}
+  .theme-btn{
+    width:30px;height:30px;border-radius:50%;
+    border:1px solid var(--accent);background:var(--accent-bg);color:var(--accent);
+    font-size:14px;line-height:1;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .theme-btn:hover{transform:scale(1.08);box-shadow:0 0 0 3px var(--accent-bg)}
+  .theme-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .theme-btn .ic-sun{display:none}
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) .theme-btn .ic-moon{display:none}
+    :root:not([data-theme="light"]) .theme-btn .ic-sun{display:block}
+  }
+  :root[data-theme="dark"] .theme-btn .ic-moon{display:none}
+  :root[data-theme="dark"] .theme-btn .ic-sun{display:block}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+  @keyframes badge-glow{
+    0%,100%{box-shadow:0 0 0 0 transparent}
+    50%{box-shadow:0 0 0 4px var(--green-bg),0 0 14px 3px var(--green)}
+  }
   .dl-btn{
     display:inline-flex;align-items:center;gap:5px;
     padding:5px 12px;font-size:11px;font-weight:700;
@@ -144,6 +196,14 @@
     border-radius:8px;padding:18px;display:flex;flex-direction:column;gap:12px;
   }
   .comp h4{font-size:11px;font-weight:700;color:var(--dim);text-transform:uppercase;letter-spacing:.06em}
+  .appgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(72px,1fr));gap:10px}
+  .apptile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px 4px;background:var(--card);border:1px solid var(--border);border-radius:10px;min-height:76px;box-shadow:var(--shadow)}
+  .apptile img{width:40px;height:40px;object-fit:contain;border-radius:8px}
+  .apptile img.on-light{background:#fff;box-shadow:0 0 0 1px var(--appring)}
+  .apptile img.wide{width:62px}
+  .apptile span{font-size:11px;font-weight:600;color:var(--sub);text-align:center}
+  .apptile.more{background:transparent;border-style:dashed;cursor:default}
+  .apptile.more .more-n{font-size:16px;font-weight:800;color:var(--accent)}
 
   .bar-row{display:flex;flex-direction:column;gap:10px}
   .bar{display:flex;align-items:center;gap:10px}
@@ -210,14 +270,27 @@
     width:10px;height:10px;border-radius:50%;background:var(--accent);
     box-shadow:0 0 0 4px var(--accent-bg);
   }
+  .tl-step.now::before{
+    animation:live 2s ease-in-out infinite;
+  }
+  @keyframes live{
+    0%,100%{box-shadow:0 0 0 4px var(--accent-bg)}
+    50%{box-shadow:0 0 0 9px var(--accent-bg)}
+  }
   .tl-year{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
   .tl-title{font-size:14px;font-weight:700}
-  .tl-where{font-size:12px;color:var(--sub)}
+  .tl-where{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:var(--sub)}
+  .tl-dates{font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0}
+  .edu-item{margin-bottom:12px}
+  .edu-item:last-child{margin-bottom:0}
+  .edu-title{font-size:13px;font-weight:600;line-height:1.4}
+  .edu-sub{font-size:12px;color:var(--sub)}
+  .edu-dates{font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace}
   .tl-note{font-size:12px;color:var(--dim);font-style:italic}
 
   /* ── connect block ── */
   .cta{
-    background:var(--ink);border-radius:var(--radius);
+    background:#131316;border:1px solid var(--border);border-radius:var(--radius);
     padding:36px 24px;text-align:center;
     display:flex;flex-direction:column;align-items:center;gap:12px;
   }
@@ -226,11 +299,13 @@
   .cta a{
     display:inline-flex;align-items:center;gap:6px;
     padding:10px 24px;font-size:13px;font-weight:700;
-    color:var(--ink);background:#fff;border-radius:8px;
+    color:#131316;background:#fff;border-radius:8px;
     text-decoration:none;transition:opacity .15s;
   }
   .cta a:hover{opacity:.9}
 </style>
+</head>
+<body>
 
 <div class="app">
 
@@ -240,7 +315,13 @@
       <h1>Fajri Ashari</h1>
       <span>Senior QA Automation Engineer</span>
     </div>
-    <div class="badge"><i></i> Open to work</div>
+    <div class="topbar-right">
+      <div class="badge"><i></i> Open to work</div>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="ic-moon" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
   </div>
 
   <!-- tabs -->
@@ -248,20 +329,36 @@
     <button class="on" data-tab="overview">Overview</button>
     <button data-tab="projects">Projects</button>
     <button data-tab="skills">Skills</button>
-    <button data-tab="journey">Journey</button>
+    <button data-tab="journey">Experience</button>
   </nav>
 
   <!-- ═══ OVERVIEW ═══ -->
   <div class="panel show" id="overview">
     <p class="panel-intro">
-      I design and govern test automation that scales across <b>31+ applications</b> — not scripts for one app. Building the architecture, tooling, and AI workflows that keep quality consistent at every customer touchpoint.
+      I design and govern test automation that scales across <b>31+ applications</b> — not scripts for one app. Over <b>8+ years</b> in engineering and QA, that work spans <b>40+ repositories</b> — from the first Katalon frameworks to Agentic AI pipelines. Building the architecture, tooling, and AI workflows that keep quality consistent at every customer touchpoint.
     </p>
 
     <div class="stats">
       <div class="stat"><span class="v accent">31+</span><span class="l">Apps governed</span></div>
-      <div class="stat"><span class="v green">85%</span><span class="l">Coverage</span></div>
+      <div class="stat"><span class="v green">85%+</span><span class="l">Coverage</span></div>
       <div class="stat"><span class="v accent">4&times;</span><span class="l">Faster creation</span><span class="delta">20min &rarr; 5min</span></div>
       <div class="stat"><span class="v green">3.5&times;</span><span class="l">Throughput</span><span class="delta">7 &rarr; 25/night</span></div>
+    </div>
+
+    <!-- Apps Governed -->
+    <div class="comp" style="margin-top: 8px;">
+      <h4>Public-Facing Apps Governed</h4>
+      <div class="appgrid">
+        <div class="apptile"><img src="assets/apps/myxl.png" alt="myXL app icon" class="on-light"><span>myXL</span></div>
+        <div class="apptile"><img src="assets/apps/mysf.png" alt="mySF app icon"><span>mySF</span></div>
+        <div class="apptile"><img src="assets/apps/axisnet.png" alt="AxisNet app icon"><span>AxisNet</span></div>
+        <div class="apptile"><img src="assets/apps/xlstore.png" alt="XL Store app icon" class="on-light"><span>XL Store</span></div>
+        <div class="apptile"><img src="assets/apps/axisstore.png" alt="Axis Store icon" class="on-light"><span>Axis Store</span></div>
+        <div class="apptile"><img src="assets/apps/xlhome.png" alt="XL HOME logo" class="on-light"><span>XL HOME</span></div>
+        <div class="apptile"><img src="assets/apps/prio.png" alt="XL Prioritas app icon" class="on-light"><span>Prio</span></div>
+        <div class="apptile more" title="31+ apps total across the ecosystem"><span class="more-n">+24</span><span>more</span></div>
+      </div>
+      <p style="font-size:12px;color:var(--sub);margin:0;">Highlights from <b>31+ apps</b> running on the same automation backbone — onboarding one app at a time via a single script.</p>
     </div>
 
     <!-- Featured Project Inject -->
@@ -323,7 +420,7 @@
           <div class="bar">
             <span class="tag dim">Coverage</span>
             <div class="track"><div class="fill green" style="width:85%"></div></div>
-            <span class="val good">85%</span>
+            <span class="val good">85%+</span>
           </div>
         </div>
         <p style="font-size:11px;color:var(--dim);margin-top:4px;line-height:1.5">
@@ -347,7 +444,7 @@
           <p>Led the adoption of Agentic AI across the full testing lifecycle for a major telecom's digital platform — from requirement analysis and test generation to self-healing and defect traceability. Built the harnesses, tooling, and MCP integrations that made AI-assisted testing reliable at production scale.</p>
           <div class="mini-metrics">
             <div class="mm"><span class="num">66/75</span><span class="lbl">Use Cases</span></div>
-            <div class="mm"><span class="num">&gt;85%</span><span class="lbl">Coverage</span></div>
+            <div class="mm"><span class="num">85%+</span><span class="lbl">Coverage</span></div>
             <div class="mm"><span class="num">4&times;</span><span class="lbl">Faster</span></div>
             <div class="mm"><span class="num">3.5&times;</span><span class="lbl">Throughput</span></div>
             <div class="mm"><span class="num">31+</span><span class="lbl">Apps</span></div>
@@ -426,32 +523,59 @@
     </div>
   </div>
 
-  <!-- ═══ JOURNEY ═══ -->
+  <!-- ═══ EXPERIENCE ═══ -->
   <div class="panel" id="journey">
     <div class="tl">
-      <div class="tl-step">
+      <div class="tl-step now">
         <span class="tl-year">Now</span>
         <span class="tl-title">Senior QA Automation Engineer (SDET)</span>
-        <span class="tl-where">PT IDstar Cipta Teknologi / PT XLSMART Telecom Sejahtera Tbk</span>
+        <span class="tl-where">PT IDstar Cipta Teknologi / PT XLSMART Telecom Sejahtera Tbk <span class="tl-dates">Oct 2025 — Present</span></span>
         <span class="tl-note">Architecting automation for 31+ apps. Driving Agentic AI adoption. Building tooling, harnesses, and governance.</span>
       </div>
       <div class="tl-step">
         <span class="tl-year">2021</span>
         <span class="tl-title">Senior Software QA Engineer</span>
-        <span class="tl-where">Axiata Digital Labs / PT XL Axiata Tbk</span>
-        <span class="tl-note">Built first frameworks from scratch. 1,000+ backlog items. 5,000+ test cases. Katalon. CI/CD.</span>
+        <span class="tl-where">Axonect (formerly Axiata Digital Labs) / PT XLSMART Telecom Sejahtera Tbk <span class="tl-dates">Mar 2021 — Sep 2025</span></span>
+        <span class="tl-note">Built first Katalon frameworks from scratch. 1,000+ backlog items. 5,000+ test cases. CI/CD.</span>
       </div>
       <div class="tl-step">
         <span class="tl-year">2019</span>
         <span class="tl-title">Quality Assurance Tester</span>
-        <span class="tl-where">PT Xsis Mitra Utama / PT XL Axiata Tbk</span>
+        <span class="tl-where">PT Xsis Mitra Utama / PT XLSMART Telecom Sejahtera Tbk <span class="tl-dates">Jun 2019 — Mar 2021</span></span>
         <span class="tl-note">API testing, end-to-end scenarios, backend validation. Manual to automation transition.</span>
       </div>
       <div class="tl-step">
         <span class="tl-year">2018</span>
         <span class="tl-title">Frontend Developer</span>
-        <span class="tl-where">PT Xsis Mitra Utama / PT Telkom Indonesia (Persero) Tbk</span>
+        <span class="tl-where">PT Xsis Mitra Utama / PT Telkom Indonesia (Persero) Tbk <span class="tl-dates">May 2018 — Jun 2019</span></span>
         <span class="tl-note">React Native Android apps. 3 production apps in 1 year. The dev foundation.</span>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="comp">
+        <h4>Education</h4>
+        <div class="edu-item">
+          <div class="edu-title">Bachelor of Computer Science</div>
+          <div class="edu-sub">Universitas Mercu Buana</div>
+          <div class="edu-dates">2021 — 2025</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Associate Degree in Information Technology</div>
+          <div class="edu-sub">Universitas Sumatera Utara</div>
+          <div class="edu-dates">2014 — 2017</div>
+        </div>
+      </div>
+      <div class="comp">
+        <h4>Certifications</h4>
+        <div class="edu-item">
+          <div class="edu-title">Katalon Expert Level Certification</div>
+          <div class="edu-dates">2024</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-title">Agentic AI Workshop Certification</div>
+          <div class="edu-dates">2026</div>
+        </div>
       </div>
     </div>
   </div>
@@ -461,14 +585,25 @@
     <h3>Let's connect</h3>
     <p>Open to conversations about AI-driven quality engineering, scalable automation, and building systems that help teams ship with confidence.</p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center">
-      <a href="resume.html">Download Resume</a>
-      <a href="https://www.linkedin.com/in/fajri-sukma-ashari">Connect on LinkedIn &rarr;</a>
+      <a href="resume.html">View Resume</a>
+      <a href="https://github.com/fjrshr" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:fajriashr@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/fajri-sukma-ashari" target="_blank" rel="noopener">Connect on LinkedIn &rarr;</a>
     </div>
   </div>
 
 </div>
 
 <script>
+  // theme toggle (icon swaps via CSS)
+  const rootEl = document.documentElement;
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const dark = rootEl.dataset.theme ? rootEl.dataset.theme === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    rootEl.dataset.theme = dark ? 'light' : 'dark';
+    try { localStorage.setItem('theme', rootEl.dataset.theme); } catch(e) {}
+  });
+
   // tabs
   document.querySelectorAll('nav button').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -494,3 +629,6 @@
     if (b) { b.classList.add('on'); document.getElementById(h).classList.add('show'); }
   }
 </script>
+
+</body>
+</html>
